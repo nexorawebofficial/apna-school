@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mandatory Public Disclosure · Apna School</title>
+<meta name="description" content="Mandatory public disclosure of Apna School, published in the format prescribed by the board.">
+<meta name="theme-color" content="#0B1F3A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 48'%3E%3Cpath d='M3 46V19a17 17 0 0 1 34 0v27z' fill='%230B1F3A' stroke='%23D89B25' stroke-width='2'/%3E%3Ctext x='20' y='37' text-anchor='middle' font-family='Georgia,serif' font-size='15' font-weight='700' fill='%23F8F4EC'%3EAS%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700&family=Tiro+Devanagari+Hindi&display=swap">
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script src="assets/tw-config.js"></script>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header id="siteHeader" class="site-header" data-site-header data-home="index.html" data-solid></header>
+
+<main id="main">
+<section class="page-hero on-dark" aria-labelledby="page-title">
+  <div class="wrap relative z-10">
+    <p class="eyebrow">Official information</p>
+    <h1 id="page-title" class="display mt-4">Mandatory Public Disclosure</h1>
+    <p class="mt-5 max-w-2xl text-ivory/85">Information and documents the school publishes for parents and the public, in the format prescribed for affiliated schools.</p>
+    <p class="mt-3 text-xs text-ivory/70" data-show-if="legal.lastUpdated" hidden>Last updated: <span data-bind-date="legal.lastUpdated"></span></p>
+  </div>
+</section>
+
+<section class="section !pt-12">
+  <div class="wrap">
+    <article class="legal">
+      <div id="disclosure"></div>
+      <div id="disclosurePending" class="note-card mt-10" hidden>
+        <p class="!mt-0 font-semibold text-navy">Documents and further details will be published on this page once they are finalised.</p>
+      </div>
+    </article>
+  </div>
+</section>
+</main>
+
+<footer id="contact" class="footer" data-site-footer data-home="index.html"></footer>
+
+<script src="config.js"></script>
+<script src="assets/common.js"></script>
+<script>
+  (function () {
+    var S = window.School, C = S.config, D = C.disclosure || {};
+    var root = document.getElementById('disclosure');
+    var sections = 0;
+
+    function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+    function heading(text) { root.appendChild(el('h2', null, text)); }
+    function wrapTable(table) { var w = el('div', 'table-scroll'); w.appendChild(table); root.appendChild(w); }
+    function kvTable(rows) {
+      rows = rows.filter(function (r) { return S.has(r[1]); });
+      if (!rows.length) return false;
+      var t = el('table', 'data-table'), tb = el('tbody');
+      rows.forEach(function (r) {
+        var tr = el('tr'); tr.appendChild(el('th', null, r[0]));
+        var td = el('td');
+        if (r[2] === 'link') { var a = el('a', null, 'View video'); a.href = S.safeUrl(r[1]); a.target = '_blank'; a.rel = 'noopener'; td.appendChild(a); }
+        else td.textContent = String(r[1]);
+        tr.appendChild(td); tb.appendChild(tr);
+      });
+      t.appendChild(tb); wrapTable(t); return true;
+    }
+    function docTable(list) {
+      list = (list || []).filter(function (d) { return d && S.has(d.label) && S.safeUrl(d.url); });
+      if (!list.length) return false;
+      var t = el('table', 'data-table');
+      t.innerHTML = '<thead><tr><th scope="col">S. No.</th><th scope="col">Document / information</th><th scope="col">Link</th></tr></thead>';
+      var tb = el('tbody');
+      list.forEach(function (d, i) {
+        var tr = el('tr');
+        tr.appendChild(el('td', null, String(i + 1)));
+        tr.appendChild(el('td', null, d.label));
+        var td = el('td'), a = el('a', null, 'View document');
+        a.href = S.safeUrl(d.url); a.target = '_blank'; a.rel = 'noopener';
+        a.setAttribute('aria-label', 'View document: ' + d.label + ' (opens in a new tab)');
+        td.appendChild(a); tr.appendChild(td); tb.appendChild(tr);
+      });
+      t.appendChild(tb); wrapTable(t); return true;
+    }
+    function resultTable(title, rows) {
+      rows = (rows || []).filter(function (r) { return r && S.has(r.year); });
+      if (!rows.length) return false;
+      root.appendChild(el('h3', null, title));
+      var t = el('table', 'data-table');
+      t.innerHTML = '<thead><tr><th scope="col">S. No.</th><th scope="col">Year</th><th scope="col">Registered students</th><th scope="col">Students passed</th><th scope="col">Pass percentage</th><th scope="col">Remarks</th></tr></thead>';
+      var tb = el('tbody');
+      rows.forEach(function (r, i) {
+        var tr = el('tr');
+        [i + 1, r.year, r.registered, r.passed, r.passPercent, r.remarks].forEach(function (v) { tr.appendChild(el('td', null, S.has(v) || typeof v === 'number' ? String(v) : '—')); });
+        tb.appendChild(tr);
+      });
+      t.appendChild(tb); wrapTable(t); return true;
+    }
+
+    // A. General information (always shown: the school name and principal are known)
+    heading('A. General information');
+    var addr = S.addressLines();
+    kvTable([
+      ['Name of the school', C.school.name],
+      ['Affiliation number', C.school.affiliationNumber],
+      ['School code', C.school.schoolCode],
+      ['Complete address with PIN code', S.addressComplete() ? addr.join(', ') : ''],
+      ['Principal name', C.principal.name],
+      ['Principal qualification', C.principal.qualifications],
+      ['School email', C.school.email],
+      ['Contact details', C.school.phone]
+    ]);
+
+    // B. Documents and information
+    var bStart = root.children.length;
+    heading('B. Documents and information');
+    if (docTable(D.documents)) sections++; else while (root.children.length > bStart) root.lastChild.remove();
+
+    // C. Results and academics
+    var cStart = root.children.length;
+    heading('C. Results and academics');
+    var c1 = docTable(D.academics);
+    var c2 = resultTable('Result of Class X', D.resultsClassX);
+    var c3 = resultTable('Result of Class XII', D.resultsClassXII);
+    if (c1 || c2 || c3) sections++; else while (root.children.length > cStart) root.lastChild.remove();
+
+    // D. Staff (teaching)
+    var st = D.staff || {};
+    var dStart = root.children.length;
+    heading('D. Staff (teaching)');
+    if (kvTable([
+      ['Total number of teachers', st.totalTeachers],
+      ['PGT', st.pgt], ['TGT', st.tgt], ['PRT', st.prt],
+      ['Teacher–section ratio', st.teacherSectionRatio],
+      ['Details of special educator', st.specialEducator],
+      ['Details of counsellor and wellness teacher', st.counsellor]
+    ])) sections++; else while (root.children.length > dStart) root.lastChild.remove();
+
+    // E. School infrastructure
+    var inf = D.infrastructure || {};
+    var eStart = root.children.length;
+    heading('E. School infrastructure');
+    if (kvTable([
+      ['Total campus area', inf.campusArea],
+      ['Number and size of classrooms', inf.classrooms],
+      ['Number and size of laboratories, including computer labs', inf.laboratories],
+      ['Internet facility', inf.internet],
+      ['Number of girls’ toilets', inf.girlsToilets],
+      ['Number of boys’ toilets', inf.boysToilets],
+      ['YouTube video of the school inspection', S.safeUrl(inf.inspectionVideoUrl), 'link']
+    ])) sections++; else while (root.children.length > eStart) root.lastChild.remove();
+
+    root.firstElementChild.style.marginTop = '0';
+    if (!sections) document.getElementById('disclosurePending').hidden = false;
+  })();
+</script>
+</body>
+</html>

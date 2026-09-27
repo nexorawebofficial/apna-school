@@ -5,16 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Apna School</title>
 <meta name="description" content="Apna School — Nursery to Class XII. Holistic Indian education with academic rigour, values and a wide world of sport and the arts.">
+<meta name="theme-color" content="#0B1F3A">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Apna School — Where Curiosity Becomes Character">
+<meta property="og:description" content="Nursery to Class XII. Strong academics, Indian values, sport, the arts and service.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 48'%3E%3Cpath d='M3 46V19a17 17 0 0 1 34 0v27z' fill='%230B1F3A' stroke='%23D89B25' stroke-width='2'/%3E%3Ctext x='20' y='37' text-anchor='middle' font-family='Georgia,serif' font-size='15' font-weight='700' fill='%23F8F4EC'%3EAS%3C/text%3E%3C/svg%3E">
 
 <!--
   APNA SCHOOL — single-page website
-  ---------------------------------------------------------------
-  • Stack: HTML + Tailwind CSS (Play CDN for preview; compile with the Tailwind CLI for production).
-  • Every factual detail that the school must confirm is wrapped in <span class="ph">…</span>
-    (dashed underline). Search for class="ph" to find them all.
-  • Photos in /images are free stock photos from Pexels (pexels.com licence: free for commercial use,
-    no attribution required). Replace them with the school's own photographs when available.
-    If a file is missing, the illustrated fallback is shown automatically.
+  • School details, admissions, stats, testimonials and links live in config.js.
+    Anything left empty there stays hidden on the site.
+  • Photos in /images are free stock photos from Pexels (free for commercial use, no attribution
+    required). Replace them with the school's own photographs when available.
 -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,286 +24,16 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700&family=Tiro+Devanagari+Hindi&display=swap">
 
 <script src="https://cdn.tailwindcss.com/3.4.16"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          navy: { DEFAULT: '#0B1F3A', 900: '#071429', 700: '#1B3257' },
-          ivory: { DEFAULT: '#F8F4EC', 2: '#F1EADC' },
-          gold: { DEFAULT: '#D89B25', soft: '#E9BC5E', ink: '#8A5C0E' },
-          sage: { DEFAULT: '#7C9270', ink: '#4E6445' },
-          muted: '#4A5872',
-          line: '#E4D9C3'
-        },
-        fontFamily: {
-          serif: ['"Cormorant Garamond"', 'Georgia', '"Times New Roman"', 'serif'],
-          sans: ['Manrope', 'system-ui', '-apple-system', '"Segoe UI"', 'Roboto', 'sans-serif']
-        },
-        maxWidth: { site: '76rem' }
-      }
-    }
-  }
-</script>
+<script src="assets/tw-config.js"></script>
+<link rel="stylesheet" href="assets/site.css">
 
-<style>
-  :root {
-    --navy: #0B1F3A; --navy-900: #071429; --navy-700: #1B3257;
-    --ivory: #F8F4EC; --ivory-2: #F1EADC;
-    --gold: #D89B25; --gold-soft: #E9BC5E; --gold-ink: #8A5C0E;
-    --sage: #7C9270; --sage-ink: #4E6445;
-    --muted: #4A5872; --line: #E4D9C3; --white: #FFFFFF;
-    --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
-    --sans: Manrope, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    --deva: "Tiro Devanagari Hindi", "Noto Serif Devanagari", "Nirmala UI", serif;
-    --shadow-soft: 0 1px 2px rgba(11,31,58,.04), 0 14px 34px -14px rgba(11,31,58,.16);
-    --shadow-lift: 0 2px 4px rgba(11,31,58,.05), 0 24px 48px -18px rgba(11,31,58,.28);
-    --jaali: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='36' height='36'><path d='M18 0L36 18L18 36L0 18Z M18 7L29 18L18 29L7 18Z' fill='none' stroke='%23D89B25' stroke-width='.8'/><circle cx='18' cy='18' r='1.6' fill='%23D89B25'/></svg>");
-    color-scheme: light;
-  }
-
-  html { -webkit-text-size-adjust: 100%; }
-  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
-  body { background: var(--ivory); color: var(--navy); font-family: var(--sans); font-size: 16px; line-height: 1.65; font-size-adjust: none; }
-  section[id], footer[id] { scroll-margin-top: 84px; }
-
-  :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
-  .skip-link { position: absolute; left: 16px; top: -60px; z-index: 100; background: var(--gold); color: var(--navy); padding: 10px 16px; border-radius: 8px; font-weight: 700; }
-  .skip-link:focus { top: 12px; }
-
-  /* ---------- Type ---------- */
-  .display { font-family: var(--serif); font-weight: 600; letter-spacing: -.01em; line-height: 1.05; text-wrap: balance; }
-  .h2 { font-family: var(--serif); font-weight: 600; font-size: clamp(2.1rem, 1.5rem + 2.2vw, 3.25rem); line-height: 1.08; letter-spacing: -.01em; text-wrap: balance; }
-  .h3 { font-family: var(--serif); font-weight: 600; font-size: 1.6rem; line-height: 1.15; }
-  .lede { font-size: 1.075rem; color: var(--muted); max-width: 62ch; }
-  .eyebrow { display: inline-flex; align-items: center; gap: .75rem; font-size: .75rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-ink); }
-  .eyebrow::before { content: ""; width: 28px; height: 1px; background: currentColor; opacity: .7; }
-  .on-dark .eyebrow { color: var(--gold-soft); }
-  .deva { font-family: var(--deva); }
-
-  /* Editable placeholder marker */
-  .ph { border-bottom: 1px dashed currentColor; text-decoration: none; cursor: help; }
-
-  /* Gold divider with a diamond */
-  .divider { display: flex; align-items: center; gap: 12px; color: var(--gold); }
-  .divider::before, .divider::after { content: ""; height: 1px; flex: 1; background: linear-gradient(90deg, transparent, currentColor); opacity: .55; }
-  .divider::after { background: linear-gradient(90deg, currentColor, transparent); }
-  .divider i { width: 7px; height: 7px; transform: rotate(45deg); border: 1px solid currentColor; }
-
-  /* ---------- Buttons ---------- */
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: .6rem; padding: .9rem 1.4rem; border-radius: 10px; font-weight: 700; font-size: .95rem; line-height: 1.2; transition: background-color .25s, color .25s, border-color .25s, transform .25s, box-shadow .25s; white-space: nowrap; }
-  .btn svg { transition: transform .25s; }
-  .btn:hover svg { transform: translateX(3px); }
-  .btn-gold { background: var(--gold); color: var(--navy); box-shadow: 0 10px 24px -10px rgba(216,155,37,.7); }
-  .btn-gold:hover { background: #E6AC3F; transform: translateY(-1px); }
-  .btn-ghost { border: 1px solid rgba(248,244,236,.45); color: var(--ivory); background: rgba(248,244,236,.04); backdrop-filter: blur(4px); }
-  .btn-ghost:hover { border-color: var(--gold-soft); background: rgba(248,244,236,.1); }
-  .btn-navy { background: var(--navy); color: var(--ivory); }
-  .btn-navy:hover { background: var(--navy-700); transform: translateY(-1px); }
-  .btn-sm { padding: .65rem 1.05rem; font-size: .875rem; }
-
-  /* ---------- Header ---------- */
-  .site-header { position: fixed; inset: 0 0 auto 0; z-index: 50; padding-top: env(safe-area-inset-top, 0px); color: var(--ivory); transition: background-color .35s, box-shadow .35s, color .35s; }
-  .site-header.is-scrolled, .site-header.menu-open { background: rgba(248,244,236,.94); backdrop-filter: saturate(1.2) blur(12px); color: var(--navy); box-shadow: 0 1px 0 var(--line), 0 10px 30px -20px rgba(11,31,58,.35); }
-  .site-header.menu-open { background: var(--ivory); }
-  .brand-name { font-family: var(--serif); font-weight: 700; font-size: 1.45rem; line-height: 1; letter-spacing: .01em; }
-  .brand-sub { font-size: .66rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 600; opacity: .75; }
-  .nav-link { position: relative; font-size: .9rem; font-weight: 600; padding: .4rem 0; opacity: .9; }
-  .nav-link::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 1px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform .3s; }
-  .nav-link:hover, .nav-link[aria-current="true"] { opacity: 1; }
-  .nav-link:hover::after, .nav-link[aria-current="true"]::after { transform: scaleX(1); }
-  .menu-btn { width: 44px; height: 44px; display: inline-grid; place-items: center; border-radius: 10px; border: 1px solid currentColor; border-color: color-mix(in srgb, currentColor 30%, transparent); }
-  .mobile-menu a.m-link { display: block; padding: 1rem 0; border-bottom: 1px solid var(--line); font-family: var(--serif); font-size: 1.5rem; font-weight: 600; }
-
-  /* ---------- Hero ---------- */
-  .hero { position: relative; isolation: isolate; overflow: hidden; background: var(--navy); color: var(--ivory); min-height: clamp(620px, 92vh, 820px); display: flex; align-items: flex-end; }
-  .hero-media, .hero-media > * { position: absolute; inset: 0; width: 100%; height: 100%; }
-  .hero-media { z-index: -1; }
-  .hero-scene { display: block; }
-  .hero-scene g[data-depth] { will-change: transform; }
-  .hero-photo { object-fit: cover; object-position: 55% 60%; }
-  @media (min-width: 768px) {
-    .hero-media > .hero-photo { left: 16%; width: 100%; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 22%); mask-image: linear-gradient(90deg, transparent 0, #000 22%); }
-  }
-  .hero-bloom { background: radial-gradient(ellipse 45% 55% at 78% 66%, rgba(246,196,106,.38), rgba(246,196,106,0) 70%); mix-blend-mode: screen; pointer-events: none; }
-  .hero-overlay { background:
-      linear-gradient(90deg, rgba(11,31,58,.95) 0%, rgba(11,31,58,.86) 30%, rgba(11,31,58,.45) 58%, rgba(11,31,58,.12) 100%),
-      linear-gradient(0deg, rgba(7,20,41,.92) 0%, rgba(7,20,41,0) 38%),
-      linear-gradient(180deg, rgba(7,20,41,.55) 0%, rgba(7,20,41,0) 22%); }
-  @media (max-width: 767px) {
-    .hero-overlay { background: linear-gradient(180deg, rgba(11,31,58,.55) 0%, rgba(11,31,58,.78) 45%, rgba(7,20,41,.96) 100%); }
-  }
-  .hero-grain { opacity: .16; mix-blend-mode: overlay; pointer-events: none;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
-  .hero h1 { font-size: clamp(2.9rem, 1.6rem + 5.2vw, 5.6rem); }
-  .hero h1 em { font-style: italic; font-weight: 500; color: var(--gold-soft); }
-  .hero-copy { color: rgba(248,244,236,.86); font-size: 1.1rem; max-width: 34rem; }
-  .motto { font-size: 1.05rem; color: var(--gold-soft); letter-spacing: .02em; }
-  .trust { border-top: 1px solid rgba(233,188,94,.28); }
-  .trust-item + .trust-item { border-left: 1px solid rgba(233,188,94,.28); }
-  @media (max-width: 639px) { .trust-item + .trust-item { border-left: 0; border-top: 1px solid rgba(233,188,94,.2); } }
-  .trust-num { font-family: var(--serif); font-size: 1.9rem; font-weight: 600; line-height: 1; color: var(--ivory); }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .hero-in > * { animation: rise .9s cubic-bezier(.2,.7,.2,1) both; }
-    .hero-in > *:nth-child(2) { animation-delay: .08s; }
-    .hero-in > *:nth-child(3) { animation-delay: .16s; }
-    .hero-in > *:nth-child(4) { animation-delay: .26s; }
-    .hero-in > *:nth-child(5) { animation-delay: .36s; }
-    @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
-  }
-
-  /* ---------- Sections ---------- */
-  .section { padding-block: clamp(4.5rem, 3rem + 5vw, 7.5rem); }
-  .wrap { max-width: 76rem; margin-inline: auto; padding-inline: 1rem; }
-  @media (min-width: 640px) { .wrap { padding-inline: 1.5rem; } }
-  @media (min-width: 1024px) { .wrap { padding-inline: 2rem; } }
-
-  /* Principal */
-  .arch-frame { position: relative; aspect-ratio: 4 / 5; max-width: 100%; border-radius: 999px 999px 18px 18px; overflow: hidden; background: linear-gradient(170deg, #1B3257 0%, #0B1F3A 70%); box-shadow: var(--shadow-lift); }
-  .arch-frame::before { content: ""; position: absolute; inset: 14px; border-radius: 999px 999px 10px 10px; border: 1px solid rgba(233,188,94,.5); pointer-events: none; z-index: 2; }
-  .arch-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .arch-backdrop { position: absolute; inset: -22px -22px auto auto; width: 70%; height: 70%; background-image: var(--jaali); background-size: 26px; opacity: .35; border-radius: 16px; z-index: -1; }
-  .signature { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 2.1rem; line-height: 1; color: var(--navy); }
-  .pull { font-family: var(--serif); font-size: clamp(1.7rem, 1.2rem + 1.5vw, 2.4rem); line-height: 1.2; font-weight: 500; text-wrap: balance; }
-
-  /* Cards */
-  .card { position: relative; background: var(--white); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow-soft); transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s, border-color .35s; overflow: hidden; }
-  .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); border-color: #D9C49A; }
-  .card-motif { position: absolute; top: -30px; right: -30px; width: 130px; height: 130px; background-image: var(--jaali); background-size: 22px; opacity: .18; border-radius: 50%; mask-image: radial-gradient(circle, #000 35%, transparent 70%); -webkit-mask-image: radial-gradient(circle, #000 35%, transparent 70%); transition: opacity .35s; }
-  .card:hover .card-motif { opacity: .38; }
-  .medallion { width: 56px; height: 56px; display: grid; place-items: center; border-radius: 50%; background: var(--ivory); border: 1px solid #E8D6AE; color: var(--gold-ink); box-shadow: inset 0 0 0 5px var(--white); }
-
-  /* Academics */
-  .stage { position: relative; padding-top: 2.25rem; }
-  .stage::before { content: ""; position: absolute; top: 10px; left: 0; right: 0; height: 1px; background: var(--line); }
-  .stage-dot { position: absolute; top: 4px; left: 0; width: 13px; height: 13px; transform: rotate(45deg); background: var(--ivory); border: 1.5px solid var(--gold); }
-  .stage-no { font-family: var(--serif); font-size: 3.2rem; line-height: 1; color: #CDBB97; font-weight: 500; font-variant-numeric: lining-nums; }
-  .stage-meta { font-size: .8rem; font-weight: 700; letter-spacing: .06em; color: var(--sage-ink); text-transform: uppercase; }
-  .thread { border-top: 1px solid var(--line); padding-top: 1.1rem; }
-
-  /* Campus tiles */
-  .tile { position: relative; overflow: hidden; border-radius: 16px; isolation: isolate; color: var(--ivory); min-height: 240px; box-shadow: var(--shadow-soft); }
-  .tile-art { position: absolute; inset: 0; z-index: -2; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
-  .tile-art::before { content: ""; position: absolute; inset: 0; background-image: var(--jaali); background-size: 30px; opacity: .1; }
-  .tile-art::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 80% 15%, rgba(255,226,160,.28), transparent 55%); }
-  .tile-art svg { position: absolute; right: 8%; top: 12%; width: 34%; max-width: 150px; height: auto; color: rgba(248,244,236,.42); }
-  .tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
-  .tile::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgba(7,20,41,.9) 0%, rgba(7,20,41,.35) 45%, rgba(7,20,41,0) 75%); }
-  .tile:hover .tile-art, .tile:hover img { transform: scale(1.05); }
-  .tile-label { position: absolute; left: 0; right: 0; bottom: 0; padding: 1.4rem 1.5rem; }
-  .tile-label h3 { font-family: var(--serif); font-size: 1.65rem; font-weight: 600; line-height: 1.1; }
-  .tile-label p { font-size: .9rem; color: rgba(248,244,236,.82); max-width: 40ch; }
-  .tile-tag { position: absolute; top: 14px; left: 14px; font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; padding: .3rem .6rem; border-radius: 6px; background: rgba(7,20,41,.45); border: 1px solid rgba(248,244,236,.2); backdrop-filter: blur(4px); }
-  .t-class { background: linear-gradient(140deg, #24406A 0%, #0B1F3A 60%, #1E3A34 100%); }
-  .t-lib   { background: linear-gradient(160deg, #8A6533 0%, #3D2B17 100%); }
-  .t-lab   { background: linear-gradient(160deg, #5A7552 0%, #1D2E27 100%); }
-  .t-sport { background: linear-gradient(115deg, #7C9270 0%, #3A573F 45%, #0B1F3A 100%); }
-  .t-music { background: linear-gradient(140deg, #8E4F31 0%, #3A1E19 100%); }
-  .t-arts  { background: linear-gradient(140deg, #C98A2B 0%, #7A4A14 100%); }
-
-  /* Stats band */
-  .stats { background: var(--navy); color: var(--ivory); position: relative; overflow: hidden; }
-  .stats::before { content: ""; position: absolute; inset: 0; background-image: var(--jaali); background-size: 34px; opacity: .06; }
-  .stat + .stat { border-left: 1px solid rgba(233,188,94,.25); }
-  @media (max-width: 767px) { .stat:nth-child(odd) { border-left: 0; } .stat:nth-child(n+3) { border-top: 1px solid rgba(233,188,94,.25); } }
-  .stat-num { font-family: var(--serif); font-size: clamp(2.8rem, 2rem + 2.6vw, 4.2rem); font-weight: 600; line-height: 1; color: var(--gold-soft); font-variant-numeric: lining-nums tabular-nums; }
-
-  /* Admissions */
-  .step-no { flex: none; width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--gold); color: var(--gold-ink); font-family: var(--serif); font-size: 1.35rem; font-weight: 600; background: var(--white); }
-  .steps li { position: relative; }
-  .steps li:not(:last-child)::after { content: ""; position: absolute; left: 21.5px; top: 50px; bottom: -14px; width: 1px; background: linear-gradient(var(--gold), transparent); opacity: .5; }
-  .callout { background: var(--navy); color: var(--ivory); border-radius: 16px; position: relative; overflow: hidden; }
-  .callout::after { content: ""; position: absolute; right: -40px; bottom: -40px; width: 180px; height: 180px; background-image: var(--jaali); background-size: 24px; opacity: .12; border-radius: 50%; }
-  .form-card { background: var(--white); border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow-lift); }
-  .field label.lbl { display: block; font-size: .82rem; font-weight: 700; margin-bottom: .4rem; color: var(--navy); }
-  .field .req { color: #9A3B1B; }
-  .input { width: 100%; border: 1px solid #D8CDB6; background: #FDFBF7; border-radius: 10px; padding: .8rem .95rem; font: inherit; font-size: .95rem; color: var(--navy); transition: border-color .2s, box-shadow .2s, background-color .2s; }
-  .input::placeholder { color: #8A93A3; }
-  .input:hover { border-color: #C4B28C; }
-  .input:focus { outline: none; border-color: var(--gold); background: var(--white); box-shadow: 0 0 0 4px rgba(216,155,37,.18); }
-  .input[aria-invalid="true"] { border-color: #B4441F; box-shadow: 0 0 0 3px rgba(180,68,31,.12); }
-  .prefix-wrap { display: flex; }
-  .prefix-wrap .prefix { display: grid; place-items: center; padding-inline: .85rem; border: 1px solid #D8CDB6; border-right: 0; border-radius: 10px 0 0 10px; background: var(--ivory-2); font-weight: 600; font-size: .9rem; color: var(--muted); }
-  .prefix-wrap .input { border-radius: 0 10px 10px 0; }
-  select.input { appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%230B1F3A' stroke-width='1.6'/></svg>"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
-  .err { color: #9A3B1B; font-size: .8rem; font-weight: 600; margin-top: .35rem; }
-  .check { width: 20px; height: 20px; accent-color: var(--navy); flex: none; margin-top: 2px; }
-
-  /* Testimonials */
-  .quote-card { position: relative; background: var(--white); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow-soft); }
-  .quote-mark { font-family: var(--serif); font-size: 5.5rem; line-height: .6; color: var(--gold); opacity: .75; height: 2.4rem; display: block; }
-  .quote-card blockquote p { font-family: var(--serif); font-size: clamp(1.35rem, 1.1rem + .8vw, 1.7rem); line-height: 1.35; font-weight: 500; text-wrap: pretty; }
-
-  /* Footer */
-  .footer { background: var(--navy-900); color: rgba(248,244,236,.78); }
-  .footer h3 { color: var(--ivory); font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; }
-  .footer a.f-link { transition: color .2s; }
-  .footer a.f-link:hover { color: var(--gold-soft); }
-  .social { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 50%; border: 1px solid rgba(248,244,236,.2); color: var(--ivory); transition: border-color .2s, background-color .2s, color .2s; }
-  .social:hover { border-color: var(--gold); background: var(--gold); color: var(--navy); }
-
-  /* Reveal on scroll (only when motion is allowed) */
-  .motion-ok .reveal { transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
-  .motion-ok .reveal:not(.is-in) { opacity: 0; transform: translateY(22px); }
-  .motion-ok .reveal[data-delay="1"] { transition-delay: .08s; }
-  .motion-ok .reveal[data-delay="2"] { transition-delay: .16s; }
-  .motion-ok .reveal[data-delay="3"] { transition-delay: .24s; }
-
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
-  }
-</style>
 </head>
 <body>
 
 <a class="skip-link" href="#main">Skip to content</a>
 
-<!-- ======================= HEADER ======================= -->
-<header id="siteHeader" class="site-header">
-  <div class="wrap flex h-[76px] items-center justify-between gap-4">
-    <a href="#top" class="flex items-center gap-3" aria-label="Apna School, back to top">
-      <!-- Logo placeholder: replace this SVG with the school crest -->
-      <svg viewBox="0 0 40 48" width="34" height="41" aria-hidden="true">
-        <path d="M3 46V19a17 17 0 0 1 34 0v27z" fill="#0B1F3A" stroke="#D89B25" stroke-width="1.5"/>
-        <path d="M8 46V20a12 12 0 0 1 24 0v26" fill="none" stroke="#D89B25" stroke-width=".75" opacity=".55"/>
-        <text x="20" y="37" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-size="15" font-weight="700" fill="#F8F4EC">AS</text>
-      </svg>
-      <span class="flex flex-col gap-1">
-        <span class="brand-name">Apna School</span>
-        <span class="brand-sub">Nursery to Class XII</span>
-      </span>
-    </a>
-
-    <nav aria-label="Primary" class="hidden lg:block">
-      <ul class="flex items-center gap-8">
-        <li><a class="nav-link" href="#about">About</a></li>
-        <li><a class="nav-link" href="#academics">Academics</a></li>
-        <li><a class="nav-link" href="#campus">Campus Life</a></li>
-        <li><a class="nav-link" href="#admissions">Admissions</a></li>
-        <li><a class="nav-link" href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-
-    <div class="flex items-center gap-3">
-      <a href="#enquiry" class="btn btn-gold btn-sm">Apply Now</a>
-      <button id="menuBtn" class="menu-btn lg:hidden" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
-        <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path id="menuIcon" d="M2 5h16M2 10h16M2 15h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"/></svg>
-      </button>
-    </div>
-  </div>
-
-  <div id="mobileMenu" class="mobile-menu lg:hidden" hidden>
-    <nav aria-label="Mobile" class="wrap pb-6">
-      <a class="m-link" href="#about">About</a>
-      <a class="m-link" href="#academics">Academics</a>
-      <a class="m-link" href="#campus">Campus Life</a>
-      <a class="m-link" href="#admissions">Admissions</a>
-      <a class="m-link" href="#contact">Contact</a>
-      <a class="btn btn-navy mt-6 w-full" href="#enquiry">Book a Campus Visit</a>
-    </nav>
-  </div>
-</header>
+<!-- ======================= HEADER (rendered by assets/common.js) ======================= -->
+<header id="siteHeader" class="site-header" data-site-header></header>
 
 <main id="main">
 
@@ -494,21 +226,25 @@
         </a>
         <a href="#enquiry" class="btn btn-ghost">Book a Campus Visit</a>
       </div>
-      <p class="mt-5 text-sm text-ivory/70">Admissions open for academic year <span class="ph" title="Editable: current admission cycle">2027–28</span></p>
+      <p class="mt-5 text-sm text-ivory/75" data-show-if="admissions.open&admissions.academicYear" hidden>Admissions open for academic year <span data-bind="admissions.academicYear"></span></p>
     </div>
 
-    <ul class="trust mt-14 grid grid-cols-1 sm:grid-cols-3" aria-label="At a glance">
-      <li class="trust-item flex items-center gap-4 py-5 sm:pr-6">
-        <span class="trust-num"><span class="ph" title="Editable: choose your board">CBSE</span></span>
-        <span class="text-sm leading-snug text-ivory/80">Affiliated school<br><span class="text-ivory/60">Affiliation No. <span class="ph" title="Editable: official affiliation number">[to be added]</span></span></span>
+    <ul class="trust mt-14 flex flex-col sm:flex-row" aria-label="At a glance">
+      <li class="trust-item" data-show-if="school.board" hidden>
+        <span class="trust-num" data-bind="school.board"></span>
+        <span class="trust-text">Affiliated school<span data-show-if="school.affiliationNumber" hidden><br><span class="text-ivory/65">Affiliation No. <span data-bind="school.affiliationNumber"></span></span></span></span>
       </li>
-      <li class="trust-item flex items-center gap-4 py-5 sm:px-6">
-        <span class="trust-num"><span class="ph" title="Editable: years since founding">25+</span></span>
-        <span class="text-sm leading-snug text-ivory/80">Years of<br>excellence</span>
+      <li class="trust-item" data-show-if="school.foundedYear" hidden>
+        <span class="trust-num" data-bind="school.foundedYear"></span>
+        <span class="trust-text">Serving families<br>since this year</span>
       </li>
-      <li class="trust-item flex items-center gap-4 py-5 sm:pl-6">
-        <span class="trust-num">100%</span>
-        <span class="text-sm leading-snug text-ivory/80">Student-focused,<br>every day</span>
+      <li class="trust-item">
+        <span class="trust-num">N–XII</span>
+        <span class="trust-text">Nursery to<br>Class XII</span>
+      </li>
+      <li class="trust-item" data-show-if="admissions.open&admissions.academicYear" hidden>
+        <span class="trust-num" data-bind="admissions.academicYear"></span>
+        <span class="trust-text">Admissions<br>now open</span>
       </li>
     </ul>
   </div>
@@ -519,16 +255,16 @@
   <div class="wrap grid items-center gap-14 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20">
     <div class="reveal relative mx-auto w-full max-w-[400px]">
       <div class="arch-backdrop" aria-hidden="true"></div>
-      <div class="arch-frame">
-        <!-- Portrait placeholder: add images/principal.jpg (portrait, 4:5) -->
-        <img src="images/principal.jpg" alt="Portrait of Rathi Sir, Principal of Apna School" onerror="this.remove()">
-        <div class="absolute inset-0 grid place-items-center text-center" aria-hidden="true">
+      <div class="arch-frame" id="principalFrame">
+        <!-- Portrait: set principal.photo in config.js -->
+        <div class="absolute inset-0 grid place-items-center text-center" id="principalFallback" aria-hidden="true">
           <div>
-            <svg width="96" height="110" viewBox="0 0 96 110" class="mx-auto" style="color:rgba(233,188,94,.55)">
+            <svg width="96" height="110" viewBox="0 0 96 110" class="mx-auto" style="color:rgba(233,188,94,.55)" focusable="false">
               <circle cx="48" cy="36" r="22" fill="none" stroke="currentColor" stroke-width="1.2"/>
               <path d="M8 110c2-26 19-42 40-42s38 16 40 42" fill="none" stroke="currentColor" stroke-width="1.2"/>
             </svg>
-            <p class="mt-4 font-serif text-3xl font-semibold text-ivory">Rathi Sir</p><p class="mt-1 text-[.7rem] font-bold uppercase tracking-[.18em] text-gold-soft">Principal</p>
+            <p class="mt-4 font-serif text-3xl font-semibold text-ivory" data-bind="principal.name"></p>
+            <p class="mt-1 text-[.7rem] font-bold uppercase tracking-[.18em] text-gold-soft">Principal</p>
           </div>
         </div>
       </div>
@@ -542,13 +278,11 @@
         <p>Dear parents and students, welcome. At Apna School we believe good schooling is measured as much by character as by marks. Our teachers know each child by name, notice what lights them up, and hold them to high standards with warmth.</p>
         <p>Our classrooms are rigorous and our corridors are kind. We teach children to think clearly, speak confidently in more than one language, respect every culture that makes up India, and serve the community around them. We would be glad to welcome you on campus and show you what that looks like on an ordinary school day.</p>
       </div>
-      <div class="mt-9 flex items-end gap-5">
-        <div>
-          <p class="signature">Rathi Sir</p>
-          <svg width="150" height="12" viewBox="0 0 150 12" aria-hidden="true" class="mt-1"><path d="M2 8c30-6 60-6 90-2s40 2 56-4" fill="none" stroke="#D89B25" stroke-width="1.4" stroke-linecap="round"/></svg>
-          <p class="mt-2 text-sm font-semibold">Principal, Apna School</p>
-          <p class="text-sm text-muted"><span class="ph" title="Editable: qualifications">[Qualifications]</span></p>
-        </div>
+      <div class="mt-9">
+        <p class="signature" data-bind="principal.name"></p>
+        <svg width="150" height="12" viewBox="0 0 150 12" aria-hidden="true" focusable="false" class="mt-1"><path d="M2 8c30-6 60-6 90-2s40 2 56-4" fill="none" stroke="#D89B25" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <p class="mt-2 text-sm font-semibold">Principal, <span data-bind="school.name"></span></p>
+        <p class="text-sm text-muted" data-show-if="principal.qualifications" data-bind="principal.qualifications" hidden></p>
       </div>
     </div>
   </div>
@@ -607,7 +341,7 @@
         <p class="eyebrow">Academics</p>
         <h2 id="academics-title" class="h2 mt-4">One continuous journey in four stages.</h2>
       </div>
-      <p class="lede reveal" data-delay="1">Our curriculum follows the 5+3+3+4 structure of the National Education Policy 2020 and <span class="ph" title="Editable: board">CBSE</span> guidelines, so each stage builds on the last.</p>
+      <p class="lede reveal" data-delay="1">Our curriculum follows the 5+3+3+4 structure of the National Education Policy 2020<span data-show-if="school.board" hidden> and <span data-bind="school.board"></span> guidelines</span>, so each stage builds on the last.</p>
     </div>
 
     <ol class="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
@@ -637,7 +371,7 @@
         <span class="stage-no" aria-hidden="true">04</span>
         <h3 class="h3 mt-3">Senior Secondary</h3>
         <p class="stage-meta mt-2">Classes IX–XII · Ages 14–18</p>
-        <p class="mt-4 text-[.95rem] text-muted">Board preparation with depth. In Class XI, students choose Science (PCM / PCB), Commerce or Humanities, supported by career counselling.</p>
+        <p class="mt-4 text-[.95rem] text-muted">Board preparation with depth, subject choices in Class XI, and guidance on careers and higher studies.<span data-show-if="academics.streams" hidden> Streams offered: <span data-bind="academics.streams"></span>.</span></p>
       </li>
     </ol>
 
@@ -653,7 +387,7 @@
         </div>
         <div class="thread">
           <p class="font-bold">Languages</p>
-          <p class="mt-2 text-[.93rem] text-muted">English and Hindi, with <span class="ph" title="Editable: third language offered">Sanskrit / a regional language</span> as a third language from Class VI.</p>
+          <p class="mt-2 text-[.93rem] text-muted">English and Hindi, with a third language in line with the three-language approach of NEP 2020.</p>
         </div>
         <div class="thread">
           <p class="font-bold">Arts</p>
@@ -686,8 +420,7 @@
           <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="38" height="24" rx="2"/><path d="M10 25l7-7 6 3 7-8 7 3M24 31v8M16 41h16"/></svg>
         </div>
         <img src="images/campus-smart-classroom.jpg" alt="Students in maroon uniforms following a lesson on an interactive smart board in a bright classroom" onerror="this.remove()">
-        <span class="tile-tag">Every classroom</span>
-        <figcaption class="tile-label"><h3>Smart classrooms</h3><p class="mt-1">Interactive boards, flexible seating and space for group work in every section.</p></figcaption>
+        <figcaption class="tile-label"><h3>Smart classrooms</h3><p class="mt-1">Interactive boards, flexible seating and space for group work.</p></figcaption>
       </figure>
 
       <figure class="tile reveal" data-delay="1">
@@ -711,8 +444,7 @@
           <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M34 6l6 6L22 30l-6-6zM16 24l-9 9M9 35l2 2"/><circle cx="34" cy="36" r="4"/></svg>
         </div>
         <img src="images/campus-sports.jpg" alt="A young batter plays a shot during a cricket match on the school ground" onerror="this.remove()">
-        <span class="tile-tag">Four houses</span>
-        <figcaption class="tile-label"><h3>Sports &amp; fitness</h3><p class="mt-1">Cricket, football, athletics, yoga and indoor games, with inter-house matches all year.</p></figcaption>
+        <figcaption class="tile-label"><h3>Sports &amp; fitness</h3><p class="mt-1">Cricket, football, athletics, yoga and indoor games, with inter-house matches.</p></figcaption>
       </figure>
 
       <figure class="tile reveal sm:col-span-1 lg:col-span-2">
@@ -734,34 +466,12 @@
   </div>
 </section>
 
-<!-- ======================= ACHIEVEMENTS ======================= -->
-<section class="stats on-dark border-t border-white/10" aria-labelledby="stats-title">
+<!-- ======================= SCHOOL IN NUMBERS (hidden until config.js has verified figures) ======================= -->
+<section id="numbers" class="stats on-dark border-t border-white/10" aria-labelledby="stats-title" hidden>
   <div class="wrap relative py-20">
-    <div class="flex flex-wrap items-end justify-between gap-4">
-      <div>
-        <p class="eyebrow">Apna School in numbers</p>
-        <h2 id="stats-title" class="h3 mt-3 text-[1.9rem] text-ivory">A community that keeps growing.</h2>
-      </div>
-      <p class="text-xs text-ivory/55">All figures are editable placeholders. Replace them with verified data.</p>
-    </div>
-    <dl class="mt-12 grid grid-cols-2 md:grid-cols-4">
-      <div class="stat reveal px-4 py-8 md:px-8 md:py-4">
-        <dt class="text-sm text-ivory/75 order-2">Learners</dt>
-        <dd class="stat-num" data-count="1500" data-suffix="+"><span class="ph" title="Editable placeholder">1,500+</span></dd>
-      </div>
-      <div class="stat reveal px-4 py-8 md:px-8 md:py-4" data-delay="1">
-        <dt class="text-sm text-ivory/75">Educators</dt>
-        <dd class="stat-num" data-count="45" data-suffix="+"><span class="ph" title="Editable placeholder">45+</span></dd>
-      </div>
-      <div class="stat reveal px-4 py-8 md:px-8 md:py-4" data-delay="2">
-        <dt class="text-sm text-ivory/75">Co-curricular clubs</dt>
-        <dd class="stat-num" data-count="30" data-suffix="+"><span class="ph" title="Editable placeholder">30+</span></dd>
-      </div>
-      <div class="stat reveal px-4 py-8 md:px-8 md:py-4" data-delay="3">
-        <dt class="text-sm text-ivory/75">Board results with distinction</dt>
-        <dd class="stat-num" data-count="95" data-suffix="%+"><span class="ph" title="Editable placeholder">95%+</span></dd>
-      </div>
-    </dl>
+    <p class="eyebrow">Apna School in numbers</p>
+    <h2 id="stats-title" class="h3 mt-3 text-[1.9rem] text-ivory">A community that keeps growing.</h2>
+    <dl id="statsList" class="stats-grid mt-12"></dl>
   </div>
 </section>
 
@@ -778,220 +488,228 @@
       <ol class="steps mt-10 space-y-8">
         <li class="reveal flex gap-5">
           <span class="step-no" aria-hidden="true">1</span>
-          <div><h3 class="text-lg font-bold">Enquire</h3><p class="mt-1 text-[.95rem] text-muted">Send the enquiry form or call the admissions office. We'll share the prospectus, fee structure and age criteria.</p></div>
+          <div><h3 class="text-lg font-bold">Enquire</h3><p class="mt-1 text-[.95rem] text-muted">Send an enquiry or contact the admissions office to ask for the prospectus, fee details and age criteria.</p></div>
         </li>
         <li class="reveal flex gap-5" data-delay="1">
           <span class="step-no" aria-hidden="true">2</span>
-          <div><h3 class="text-lg font-bold">Visit</h3><p class="mt-1 text-[.95rem] text-muted">Tour the campus on a working school day, see classrooms in session and meet our academic coordinators.</p></div>
+          <div><h3 class="text-lg font-bold">Visit</h3><p class="mt-1 text-[.95rem] text-muted">Book a campus visit, see our classrooms and meet the school team.</p></div>
         </li>
         <li class="reveal flex gap-5" data-delay="2">
           <span class="step-no" aria-hidden="true">3</span>
-          <div><h3 class="text-lg font-bold">Apply</h3><p class="mt-1 text-[.95rem] text-muted">Submit the registration form with documents. An interaction or assessment follows, depending on the class.</p></div>
+          <div><h3 class="text-lg font-bold">Apply</h3><p class="mt-1 text-[.95rem] text-muted">Submit the registration form with the required documents. An interaction or assessment may follow, depending on the class.</p></div>
         </li>
       </ol>
 
-      <div class="callout reveal mt-12 p-7">
-        <p class="text-[.7rem] font-bold uppercase tracking-[.18em] text-gold-soft">Academic year <span class="ph" title="Editable">2027–28</span></p>
-        <p class="mt-3 font-serif text-[1.7rem] font-semibold leading-tight">Registrations are open for Nursery to Class IX and Class XI.</p>
-        <dl class="mt-5 grid gap-3 text-sm text-ivory/80 sm:grid-cols-2">
-          <div><dt class="text-ivory/55">Registration window</dt><dd class="font-semibold text-ivory"><span class="ph" title="Editable: dates">[Start date] – [End date]</span></dd></div>
-          <div><dt class="text-ivory/55">Age criteria</dt><dd class="font-semibold text-ivory">As per <span class="ph" title="Editable: board / state norms">[board / state]</span> norms</dd></div>
+      <!-- Admissions details come from config.js → admissions -->
+      <div class="callout reveal mt-12 p-7" data-show-if="admissions.open&admissions.academicYear" hidden>
+        <p class="text-[.7rem] font-bold uppercase tracking-[.18em] text-gold-soft">Academic year <span data-bind="admissions.academicYear"></span></p>
+        <p class="mt-3 font-serif text-[1.7rem] font-semibold leading-tight">
+          <span data-show-if="admissions.classesSummary" hidden>Registrations are open for <span data-bind="admissions.classesSummary"></span>.</span>
+          <span data-show-if="!admissions.classesSummary">Admissions are open for academic year <span data-bind="admissions.academicYear"></span>.</span>
+        </p>
+        <dl class="mt-5 grid gap-4 text-sm text-ivory/85 sm:grid-cols-2" data-show-if="admissions.registrationStart|admissions.registrationEnd|admissions.ageCriteria|admissions.feesNote" hidden>
+          <div data-show-if="admissions.registrationStart&admissions.registrationEnd" hidden><dt class="text-ivory/65">Registration window</dt><dd class="font-semibold text-ivory"><span data-bind-date="admissions.registrationStart"></span> – <span data-bind-date="admissions.registrationEnd"></span></dd></div>
+          <div data-show-if="admissions.registrationEnd&!admissions.registrationStart" hidden><dt class="text-ivory/65">Last date to register</dt><dd class="font-semibold text-ivory" data-bind-date="admissions.registrationEnd"></dd></div>
+          <div data-show-if="admissions.ageCriteria" hidden><dt class="text-ivory/65">Age criteria</dt><dd class="font-semibold text-ivory" data-bind="admissions.ageCriteria"></dd></div>
+          <div class="sm:col-span-2" data-show-if="admissions.feesNote" hidden><dt class="text-ivory/65">Fees</dt><dd class="font-semibold text-ivory" data-bind="admissions.feesNote"></dd></div>
         </dl>
+        <div class="relative z-10 mt-6 flex flex-wrap gap-3" data-show-if="admissions.prospectusUrl|admissions.feeStructureUrl" hidden>
+          <a class="btn btn-gold btn-sm" data-show-if="admissions.prospectusUrl" data-bind-href="admissions.prospectusUrl" href="#" target="_blank" rel="noopener" hidden>Download prospectus</a>
+          <a class="btn btn-ghost btn-sm" data-show-if="admissions.feeStructureUrl" data-bind-href="admissions.feeStructureUrl" href="#" target="_blank" rel="noopener" hidden>View fee structure</a>
+        </div>
       </div>
     </div>
 
-    <div id="enquiry" class="form-card reveal p-6 sm:p-9" data-delay="1">
+    <!-- Enquiry card: the form appears once config.js → enquiry.endpoint is set -->
+    <div id="enquiry" class="form-card reveal p-6 sm:p-9" data-delay="1" hidden>
       <h3 class="h3">Admission enquiry</h3>
-      <p class="mt-2 text-sm text-muted">We'll get back to you within two working days. Fields marked <span class="req text-[#9A3B1B]">*</span> are required.</p>
 
-      <form id="enquiryForm" class="mt-7 grid gap-5 sm:grid-cols-2" novalidate>
-        <div class="field sm:col-span-2">
-          <label class="lbl" for="f-name">Parent / guardian name <span class="req" aria-hidden="true">*</span></label>
-          <input class="input" id="f-name" name="name" type="text" autocomplete="name" required placeholder="e.g. Priya Sharma" aria-describedby="e-name">
-          <p class="err" id="e-name" hidden>Enter your full name.</p>
-        </div>
-        <div class="field">
-          <label class="lbl" for="f-email">Parent email <span class="req" aria-hidden="true">*</span></label>
-          <input class="input" id="f-email" name="email" type="email" autocomplete="email" required placeholder="name@example.com" aria-describedby="e-email">
-          <p class="err" id="e-email" hidden>Enter a valid email address, e.g. name@example.com.</p>
-        </div>
-        <div class="field">
-          <label class="lbl" for="f-mobile">Mobile number <span class="req" aria-hidden="true">*</span></label>
-          <div class="prefix-wrap">
-            <span class="prefix" aria-hidden="true">+91</span>
-            <input class="input" id="f-mobile" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="10" required placeholder="98XXXXXXXX" aria-describedby="e-mobile">
+      <div id="enquiryFormArea" hidden>
+        <p class="mt-2 text-sm text-muted">Share a few details and the admissions office will contact you.<span data-show-if="enquiry.responseTime" hidden> <span data-bind="enquiry.responseTime"></span></span> Fields marked <span class="req text-[#9A3B1B]">*</span> are required.</p>
+
+        <form id="enquiryForm" class="mt-7 grid gap-5 sm:grid-cols-2" novalidate>
+          <div class="field sm:col-span-2">
+            <label class="lbl" for="f-name">Parent / guardian name <span class="req" aria-hidden="true">*</span></label>
+            <input class="input" id="f-name" name="name" type="text" autocomplete="name" required maxlength="80" placeholder="e.g. Priya Sharma" aria-describedby="e-name">
+            <p class="err" id="e-name" hidden>Enter your full name.</p>
           </div>
-          <p class="err" id="e-mobile" hidden>Enter a 10-digit Indian mobile number starting with 6, 7, 8 or 9.</p>
-        </div>
-        <div class="field sm:col-span-2">
-          <label class="lbl" for="f-class">Class applying for <span class="req" aria-hidden="true">*</span></label>
-          <select class="input" id="f-class" name="class" required aria-describedby="e-class">
-            <option value="">Select a class</option>
-            <option>Nursery</option><option>LKG</option><option>UKG</option>
-            <option>Class I</option><option>Class II</option><option>Class III</option><option>Class IV</option>
-            <option>Class V</option><option>Class VI</option><option>Class VII</option><option>Class VIII</option>
-            <option>Class IX</option><option>Class XI – Science</option><option>Class XI – Commerce</option><option>Class XI – Humanities</option>
-          </select>
-          <p class="err" id="e-class" hidden>Choose the class you are applying for.</p>
-        </div>
-        <div class="field sm:col-span-2">
-          <label class="lbl" for="f-msg">Message <span class="font-normal text-muted">(optional)</span></label>
-          <textarea class="input min-h-[120px] resize-y" id="f-msg" name="message" rows="4" placeholder="Preferred visit date, questions about transport, fees or the curriculum…"></textarea>
-        </div>
-        <div class="field sm:col-span-2">
-          <label class="flex items-start gap-3 text-sm text-muted" for="f-consent">
-            <input class="check" id="f-consent" name="consent" type="checkbox" required aria-describedby="e-consent">
-            <span>I agree to be contacted by Apna School by phone, SMS, WhatsApp or email about this enquiry. My details will be used only for admissions.</span>
-          </label>
-          <p class="err" id="e-consent" hidden>Tick the box so our admissions office can contact you.</p>
-        </div>
-        <div class="sm:col-span-2">
-          <button type="submit" class="btn btn-navy w-full sm:w-auto">Send enquiry
-            <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-        </div>
-      </form>
+          <div class="field">
+            <label class="lbl" for="f-email">Parent email <span class="req" aria-hidden="true">*</span></label>
+            <input class="input" id="f-email" name="email" type="email" autocomplete="email" required maxlength="120" placeholder="name@example.com" aria-describedby="e-email">
+            <p class="err" id="e-email" hidden>Enter a valid email address, e.g. name@example.com.</p>
+          </div>
+          <div class="field">
+            <label class="lbl" for="f-mobile">Mobile number <span class="req" aria-hidden="true">*</span></label>
+            <div class="prefix-wrap">
+              <span class="prefix" aria-hidden="true">+91</span>
+              <input class="input" id="f-mobile" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="18" required placeholder="98765 43210" aria-describedby="e-mobile">
+            </div>
+            <p class="err" id="e-mobile" hidden>Enter a 10-digit Indian mobile number starting with 6, 7, 8 or 9.</p>
+          </div>
+          <div class="field sm:col-span-2">
+            <label class="lbl" for="f-class">Class applying for <span class="req" aria-hidden="true">*</span></label>
+            <select class="input" id="f-class" name="class" required aria-describedby="e-class">
+              <option value="">Select a class</option>
+            </select>
+            <p class="err" id="e-class" hidden>Choose the class you are applying for.</p>
+          </div>
+          <div class="field sm:col-span-2">
+            <label class="lbl" for="f-msg">Message <span class="font-normal text-muted">(optional)</span></label>
+            <textarea class="input min-h-[120px] resize-y" id="f-msg" name="message" rows="4" maxlength="1500" placeholder="Preferred visit date, questions about transport, fees or the curriculum…"></textarea>
+          </div>
+          <div class="hp" aria-hidden="true">
+            <label for="f-website">Leave this field empty</label>
+            <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <div class="field sm:col-span-2">
+            <label class="consent-row flex items-start gap-3 py-1 text-sm text-muted" for="f-consent">
+              <input class="check" id="f-consent" name="consent" type="checkbox" required aria-describedby="e-consent">
+              <span>I agree to be contacted by Apna School by phone, SMS, WhatsApp or email about this enquiry. My details will be used only for admissions, as described in the <a class="font-semibold text-gold-ink underline underline-offset-2" href="privacy.html">privacy policy</a>.</span>
+            </label>
+            <p class="err" id="e-consent" hidden>Tick the box so our admissions office can contact you.</p>
+          </div>
+          <div class="sm:col-span-2">
+            <button type="submit" id="submitBtn" class="btn btn-navy w-full sm:w-auto">
+              <span class="spinner" aria-hidden="true"></span>
+              <span id="submitLabel">Send enquiry</span>
+              <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div id="formError" class="form-alert sm:col-span-2" role="alert" hidden>
+            <p class="font-bold">Your enquiry could not be sent.</p>
+            <p id="formErrorText" class="mt-1"></p>
+            <p class="mt-1" data-show-if="school.phone|school.email" hidden>You can also contact the admissions office directly using the details below.</p>
+          </div>
+        </form>
 
-      <div id="formDone" class="mt-7 rounded-xl border border-sage/40 bg-sage/10 p-6" role="status" tabindex="-1" hidden>
-        <p class="font-serif text-2xl font-semibold">Thank you, <span id="doneName"></span>.</p>
-        <p class="mt-2 text-sm text-muted">Your enquiry for <strong id="doneClass"></strong> is ready. <em>Preview only:</em> connect this form to the school's admissions inbox or CRM to receive submissions.</p>
-        <button type="button" id="formReset" class="mt-4 text-sm font-bold text-gold-ink underline underline-offset-4">Send another enquiry</button>
+        <div id="formDone" class="mt-7 rounded-xl border border-sage/40 bg-sage/10 p-6" role="status" tabindex="-1" hidden>
+          <p class="font-serif text-2xl font-semibold">Thank you, <span id="doneName"></span>.</p>
+          <p id="doneSent" class="mt-2 text-sm text-muted">Your enquiry for <strong id="doneClass"></strong> has been sent to the admissions office.<span data-show-if="enquiry.responseTime" hidden> <span data-bind="enquiry.responseTime"></span></span></p>
+          <p id="doneDuplicate" class="mt-2 text-sm text-muted" hidden>You have already sent this enquiry, so we haven't sent it again. The admissions office has your details.</p>
+          <button type="button" id="formReset" class="link-btn mt-2">Send a different enquiry</button>
+        </div>
+      </div>
+
+      <div id="enquiryContact" class="mt-6 border-t border-line pt-5" data-show-if="school.phone|school.email" hidden>
+        <p class="text-sm font-bold" id="contactLead">Prefer to talk? Contact the admissions office.</p>
+        <ul class="mt-2">
+          <li data-show-if="school.phone" hidden><a class="contact-row" data-bind-href="school.phone" data-href-kind="tel" href="#">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>
+            <span data-bind="school.phone"></span></a></li>
+          <li data-show-if="school.email" hidden><a class="contact-row break-all" data-bind-href="school.email" data-href-kind="mailto" href="#">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            <span data-bind="school.email"></span></a></li>
+          <li data-show-if="school.officeHours" class="py-2 text-sm text-muted" hidden>Office hours: <span data-bind="school.officeHours"></span></li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ======================= TESTIMONIALS ======================= -->
-<section class="section bg-ivory-2/60 border-t border-line" aria-labelledby="voices-title">
+<!-- ======================= TESTIMONIALS (hidden until config.js has consented quotes) ======================= -->
+<section id="voices" class="section bg-ivory-2/60 border-t border-line" aria-labelledby="voices-title" hidden>
   <div class="wrap">
-    <div class="reveal flex flex-wrap items-end justify-between gap-4">
-      <div>
-        <p class="eyebrow">In their words</p>
-        <h2 id="voices-title" class="h2 mt-4">What our families say.</h2>
-      </div>
-      <p class="text-xs text-muted">Sample testimonials. Replace them with real quotes shared with consent.</p>
+    <div class="reveal">
+      <p class="eyebrow">In their words</p>
+      <h2 id="voices-title" class="h2 mt-4">What our families say.</h2>
     </div>
-    <div class="mt-12 grid gap-6 md:grid-cols-2">
-      <figure class="quote-card reveal p-8 md:p-10">
-        <span class="quote-mark" aria-hidden="true">&ldquo;</span>
-        <blockquote><p>Our daughter used to be shy about speaking in class. Two years on, she anchored the annual day programme in both Hindi and English. The teachers noticed her before we did.</p></blockquote>
-        <figcaption class="mt-8 flex items-center gap-4">
-          <span class="grid h-11 w-11 place-items-center rounded-full bg-navy font-serif text-lg font-semibold text-ivory" aria-hidden="true">P</span>
-          <span><span class="block font-bold"><span class="ph" title="Editable">[Parent name]</span></span><span class="text-sm text-muted">Parent of a Class V student</span></span>
-        </figcaption>
-      </figure>
-      <figure class="quote-card reveal p-8 md:p-10" data-delay="1">
-        <span class="quote-mark" aria-hidden="true">&ldquo;</span>
-        <blockquote><p>The science teachers let us fail at experiments until we understood why. That habit helped me more in Class XII than any guidebook ever did.</p></blockquote>
-        <figcaption class="mt-8 flex items-center gap-4">
-          <span class="grid h-11 w-11 place-items-center rounded-full bg-sage font-serif text-lg font-semibold text-white" aria-hidden="true">S</span>
-          <span><span class="block font-bold"><span class="ph" title="Editable">[Student name]</span></span><span class="text-sm text-muted">Class XII student, Science stream</span></span>
-        </figcaption>
-      </figure>
-    </div>
+    <div id="voicesList" class="mt-12 grid gap-6 md:grid-cols-2"></div>
   </div>
 </section>
 
 </main>
 
-<!-- ======================= FOOTER ======================= -->
-<footer id="contact" class="footer" aria-labelledby="footer-title">
-  <h2 id="footer-title" class="sr-only">Contact and quick links</h2>
-  <div class="wrap grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
-    <div>
-      <div class="flex items-center gap-3">
-        <svg viewBox="0 0 40 48" width="34" height="41" aria-hidden="true">
-          <path d="M3 46V19a17 17 0 0 1 34 0v27z" fill="#0B1F3A" stroke="#D89B25" stroke-width="1.5"/>
-          <text x="20" y="37" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-size="15" font-weight="700" fill="#F8F4EC">AS</text>
-        </svg>
-        <span class="brand-name text-ivory">Apna School</span>
-      </div>
-      <p class="deva mt-5 text-gold-soft" lang="sa">विद्या ददाति विनयम्</p>
-      <address class="mt-4 not-italic leading-relaxed text-sm">
-        <span class="ph" title="Editable: street address">[Street / Sector / Locality]</span><br>
-        <span class="ph" title="Editable: city, state">[City], [State]</span> – <span class="ph" title="Editable: PIN code">[PIN]</span><br>
-        India
-      </address>
-    </div>
+<!-- ======================= FOOTER (rendered by assets/common.js) ======================= -->
+<footer id="contact" class="footer" data-site-footer></footer>
 
-    <div>
-      <h3>Visit &amp; contact</h3>
-      <dl class="mt-5 space-y-4 text-sm">
-        <div><dt class="text-ivory/55">Office hours</dt><dd class="text-ivory"><span class="ph" title="Editable">Monday–Saturday, 8:00 am – 2:00 pm</span></dd></div>
-        <div><dt class="text-ivory/55">Phone</dt><dd class="text-ivory select-all">+91 <span class="ph" title="Editable">[XXXXX XXXXX]</span></dd></div>
-        <div><dt class="text-ivory/55">Email</dt><dd class="text-ivory select-all break-all"><span class="ph" title="Editable">admissions@[yourschool].edu.in</span></dd></div>
-      </dl>
-    </div>
-
-    <nav aria-label="Footer">
-      <h3>Quick links</h3>
-      <ul class="mt-5 space-y-3 text-sm">
-        <li><a class="f-link" href="#about">About the school</a></li>
-        <li><a class="f-link" href="#academics">Academics</a></li>
-        <li><a class="f-link" href="#campus">Campus life</a></li>
-        <li><a class="f-link" href="#admissions">Admissions</a></li>
-        <li><a class="f-link" href="#enquiry">Book a campus visit</a></li>
-        <li><a class="f-link" href="#">Mandatory public disclosure</a></li>
-      </ul>
-    </nav>
-
-    <div>
-      <h3>Follow us</h3>
-      <!-- Replace # with the school's profile URLs -->
-      <ul class="mt-5 flex flex-wrap gap-3">
-        <li><a class="social" href="#" aria-label="Apna School on Instagram">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a></li>
-        <li><a class="social" href="#" aria-label="Apna School on YouTube">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/></svg></a></li>
-        <li><a class="social" href="#" aria-label="Apna School on Facebook">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H7.9v3h2.6V21z"/></svg></a></li>
-        <li><a class="social" href="#" aria-label="Apna School on LinkedIn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9 8.8H3.8V20h3.1zM5.3 4a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 0 0 0-3.6zM20.2 13.6c0-3-1.6-5-4.3-5-1.4 0-2.4.8-2.8 1.5V8.8H10V20h3.1v-5.8c0-1.4.5-2.6 2-2.6s1.9 1.3 1.9 2.7V20h3.2z"/></svg></a></li>
-      </ul>
-      <a href="#enquiry" class="btn btn-gold btn-sm mt-8">Apply Now</a>
-    </div>
-  </div>
-
-  <div class="border-t border-white/10">
-    <div class="wrap flex flex-col gap-3 py-6 text-xs text-ivory/55 md:flex-row md:items-center md:justify-between">
-      <p>© <span id="year">2026</span> Apna School. All rights reserved. · Affiliation No. <span class="ph" title="Editable">[—]</span> · School Code <span class="ph" title="Editable">[—]</span></p>
-      <ul class="flex flex-wrap gap-5">
-        <li><a class="f-link" href="#">Privacy policy</a></li>
-        <li><a class="f-link" href="#">Terms of use</a></li>
-        <li><a class="f-link" href="#">Grievance redressal</a></li>
-      </ul>
-    </div>
-  </div>
-</footer>
-
+<script src="config.js"></script>
+<script src="assets/common.js"></script>
 <script>
 (function () {
+  'use strict';
+  var S = window.School, C = S.config;
+  var $ = function (id) { return document.getElementById(id); };
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!reduce) document.documentElement.classList.add('motion-ok');
 
-  /* Header: solid background after leaving the top of the hero */
-  var header = document.getElementById('siteHeader');
-  function onScrollHeader() { header.classList.toggle('is-scrolled', window.scrollY > 40); }
-  onScrollHeader();
-  window.addEventListener('scroll', onScrollHeader, { passive: true });
-
-  /* Mobile menu */
-  var menuBtn = document.getElementById('menuBtn');
-  var menu = document.getElementById('mobileMenu');
-  var icon = document.getElementById('menuIcon');
-  function setMenu(open) {
-    menu.hidden = !open;
-    menuBtn.setAttribute('aria-expanded', String(open));
-    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-    header.classList.toggle('menu-open', open);
-    icon.setAttribute('d', open ? 'M4 4l12 12M16 4L4 16' : 'M2 5h16M2 10h16M2 15h16');
+  /* ---------- Principal portrait ---------- */
+  var photo = S.safeUrl(C.principal && C.principal.photo);
+  if (photo) {
+    var img = new Image();
+    img.alt = 'Portrait of ' + C.principal.name + ', Principal of ' + C.school.name;
+    img.onload = function () { $('principalFallback').hidden = true; };
+    img.onerror = function () { img.remove(); };
+    img.src = photo;
+    $('principalFrame').appendChild(img);
   }
-  menuBtn.addEventListener('click', function () { setMenu(menu.hidden); });
-  menu.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !menu.hidden) { setMenu(false); menuBtn.focus(); } });
-  window.addEventListener('resize', function () { if (window.innerWidth >= 1024 && !menu.hidden) setMenu(false); });
 
-  /* Active nav link */
+  /* ---------- School in numbers ---------- */
+  var stats = (C.stats || []).filter(function (s) {
+    return s && typeof s.value === 'number' && isFinite(s.value) && S.has(s.label);
+  });
+  if (stats.length) {
+    var list = $('statsList');
+    stats.forEach(function (s, i) {
+      var box = document.createElement('div');
+      box.className = 'stat reveal';
+      if (i) box.dataset.delay = String(Math.min(i, 3));
+      var dt = document.createElement('dt');
+      dt.className = 'text-sm text-ivory/80';
+      dt.textContent = s.label;
+      var dd = document.createElement('dd');
+      dd.className = 'stat-num';
+      dd.dataset.count = s.value;
+      dd.dataset.suffix = s.suffix || '';
+      dd.textContent = s.value.toLocaleString('en-IN') + (s.suffix || '');
+      box.appendChild(dt); box.appendChild(dd);
+      list.appendChild(box);
+    });
+    $('numbers').hidden = false;
+  }
+
+  /* ---------- Testimonials ---------- */
+  var quotes = (C.testimonials || []).filter(function (t) {
+    return t && t.consent === true && S.has(t.quote) && S.has(t.name);
+  });
+  if (quotes.length) {
+    var vl = $('voicesList');
+    quotes.forEach(function (t, i) {
+      var fig = document.createElement('figure');
+      fig.className = 'quote-card reveal p-8 md:p-10';
+      if (i) fig.dataset.delay = '1';
+      fig.innerHTML = '<span class="quote-mark" aria-hidden="true">&ldquo;</span><blockquote><p></p></blockquote>' +
+        '<figcaption class="mt-8 flex items-center gap-4"><span class="grid h-11 w-11 place-items-center rounded-full bg-navy font-serif text-lg font-semibold text-ivory" aria-hidden="true"></span>' +
+        '<span><span class="block font-bold"></span><span class="text-sm text-muted"></span></span></figcaption>';
+      fig.querySelector('blockquote p').textContent = t.quote;
+      fig.querySelector('[aria-hidden="true"].grid').textContent = t.name.trim().charAt(0).toUpperCase();
+      fig.querySelector('.block.font-bold').textContent = t.name;
+      fig.querySelector('.text-sm.text-muted').textContent = t.role || '';
+      vl.appendChild(fig);
+    });
+    $('voices').hidden = false;
+  }
+
+  /* ---------- Enquiry card ---------- */
+  var enq = C.enquiry || {};
+  var endpoint = String(enq.endpoint || '').trim();
+  var formEnabled = /^https:\/\/[^\s]+$/i.test(endpoint);
+  var hasContact = S.test('school.phone|school.email');
+  var sel = $('f-class');
+  ((C.admissions && C.admissions.classesOffered) || []).forEach(function (c) {
+    var o = document.createElement('option'); o.value = o.textContent = c; sel.appendChild(o);
+  });
+  if (formEnabled) $('enquiryFormArea').hidden = false;
+  else $('contactLead').textContent = 'To enquire about admissions or book a campus visit, contact the admissions office.';
+  if (formEnabled || hasContact) {
+    $('enquiry').hidden = false;
+  } else {
+    // Nothing to enquire through yet: point every CTA at the admissions section instead.
+    document.querySelectorAll('a[href$="#enquiry"]').forEach(function (a) { a.setAttribute('href', a.getAttribute('href').replace('#enquiry', '#admissions')); });
+  }
+
+  S.apply(document);
+
+  /* ---------- Active nav link ---------- */
   var links = document.querySelectorAll('.nav-link');
   if ('IntersectionObserver' in window) {
     var navIO = new IntersectionObserver(function (entries) {
@@ -1000,10 +718,10 @@
         links.forEach(function (l) { l.setAttribute('aria-current', l.getAttribute('href') === '#' + en.target.id ? 'true' : 'false'); });
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    ['about', 'academics', 'campus', 'admissions', 'contact'].forEach(function (id) { var s = document.getElementById(id); if (s) navIO.observe(s); });
+    ['about', 'academics', 'campus', 'admissions', 'contact'].forEach(function (id) { var el = $(id); if (el) navIO.observe(el); });
   }
 
-  /* Reveal on scroll */
+  /* ---------- Reveal on scroll ---------- */
   var reveals = document.querySelectorAll('.reveal');
   if (reduce || !('IntersectionObserver' in window)) {
     reveals.forEach(function (el) { el.classList.add('is-in'); });
@@ -1015,9 +733,9 @@
     setTimeout(function () { reveals.forEach(function (el) { el.classList.add('is-in'); }); }, 4000);
   }
 
-  /* Hero parallax depth */
+  /* ---------- Hero parallax ---------- */
   var layers = document.querySelectorAll('#heroScene [data-depth]');
-  var hero = document.getElementById('top');
+  var hero = $('top');
   if (!reduce && layers.length) {
     var ticking = false;
     window.addEventListener('scroll', function () {
@@ -1031,66 +749,167 @@
     }, { passive: true });
   }
 
-  /* Stat count-up */
-  var stats = document.querySelectorAll('[data-count]');
+  /* ---------- Stat count-up ---------- */
   if (!reduce && 'IntersectionObserver' in window) {
     var sio = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
         sio.unobserve(en.target);
-        var span = en.target.querySelector('span') || en.target;
         var end = +en.target.dataset.count, suffix = en.target.dataset.suffix || '', t0 = null;
         function step(t) {
           if (!t0) t0 = t;
           var p = Math.min((t - t0) / 1400, 1), e = 1 - Math.pow(1 - p, 3);
-          span.textContent = Math.round(end * e).toLocaleString('en-IN') + suffix;
+          en.target.textContent = Math.round(end * e).toLocaleString('en-IN') + suffix;
           if (p < 1) requestAnimationFrame(step);
         }
         requestAnimationFrame(step);
       });
     }, { threshold: .5 });
-    stats.forEach(function (s) { sio.observe(s); });
+    document.querySelectorAll('[data-count]').forEach(function (s) { sio.observe(s); });
   }
 
-  /* Enquiry form */
-  var form = document.getElementById('enquiryForm');
-  var done = document.getElementById('formDone');
+  /* ---------- Enquiry form ---------- */
+  if (!formEnabled) return;
+  var form = $('enquiryForm'), btn = $('submitBtn'), label = $('submitLabel');
+  var errBox = $('formError'), done = $('formDone');
+  var mobile = $('f-mobile');
+  var sending = false;
+  var SENT_KEY = 'apna-school-enquiry';
+
+  function cleanMobile(v) {
+    v = String(v).replace(/\D/g, '');
+    if (v.length > 10 && v.indexOf('91') === 0) v = v.slice(2);
+    if (v.length > 10 && v.charAt(0) === '0') v = v.slice(1);
+    return v.slice(0, 10);
+  }
   var rules = {
-    'f-name':    function (v) { return v.trim().length >= 2; },
-    'f-email':   function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); },
-    'f-mobile':  function (v) { return /^[6-9]\d{9}$/.test(v.replace(/\s/g, '')); },
-    'f-class':   function (v) { return v !== ''; },
-    'f-consent': function (_, el) { return el.checked; }
+    'f-name':    function (el) { return el.value.trim().length >= 2; },
+    'f-email':   function (el) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(el.value.trim()); },
+    'f-mobile':  function (el) { return /^[6-9]\d{9}$/.test(cleanMobile(el.value)); },
+    'f-class':   function (el) { return el.value !== ''; },
+    'f-consent': function (el) { return el.checked; }
   };
   function check(id) {
-    var el = document.getElementById(id), ok = rules[id](el.value, el);
-    var err = document.getElementById('e-' + id.slice(2));
+    var el = $(id), ok = rules[id](el);
     el.setAttribute('aria-invalid', ok ? 'false' : 'true');
-    err.hidden = ok;
+    $('e-' + id.slice(2)).hidden = ok;
     return ok;
   }
-  document.getElementById('f-mobile').addEventListener('input', function (e) { e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10); });
   Object.keys(rules).forEach(function (id) {
-    var el = document.getElementById(id);
-    el.addEventListener(el.type === 'checkbox' || el.tagName === 'SELECT' ? 'change' : 'blur', function () { if (el.getAttribute('aria-invalid')) check(id); });
+    var el = $(id);
+    var evt = (el.type === 'checkbox' || el.tagName === 'SELECT') ? 'change' : 'blur';
+    el.addEventListener(evt, function () { if (el.hasAttribute('aria-invalid')) check(id); });
   });
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var firstBad = null;
-    Object.keys(rules).forEach(function (id) { if (!check(id) && !firstBad) firstBad = id; });
-    if (firstBad) { document.getElementById(firstBad).focus(); return; }
-    // TODO: send the data to your admissions endpoint, e.g. fetch('/api/enquiry', { method: 'POST', body: new FormData(form) })
-    document.getElementById('doneName').textContent = document.getElementById('f-name').value.trim().split(' ')[0];
-    document.getElementById('doneClass').textContent = document.getElementById('f-class').value;
-    form.hidden = true; done.hidden = false; done.focus();
-  });
-  document.getElementById('formReset').addEventListener('click', function () {
-    form.reset();
-    form.querySelectorAll('[aria-invalid]').forEach(function (el) { el.removeAttribute('aria-invalid'); });
-    done.hidden = true; form.hidden = false; document.getElementById('f-name').focus();
+  mobile.addEventListener('blur', function () {
+    var v = cleanMobile(mobile.value);
+    if (v.length === 10) mobile.value = v.slice(0, 5) + ' ' + v.slice(5);
   });
 
-  document.getElementById('year').textContent = new Date().getFullYear();
+  function fingerprint(email, mob, cls) { return [email.toLowerCase(), mob, cls].join('|'); }
+  function alreadySent(fp) {
+    try {
+      var r = JSON.parse(sessionStorage.getItem(SENT_KEY) || 'null');
+      return !!r && r.fp === fp && Date.now() - r.t < 30 * 60 * 1000;
+    } catch (e) { return false; }
+  }
+  function remember(fp) {
+    try { sessionStorage.setItem(SENT_KEY, JSON.stringify({ fp: fp, t: Date.now() })); } catch (e) {}
+  }
+  function setSending(on) {
+    sending = on;
+    btn.disabled = on;
+    form.setAttribute('aria-busy', String(on));
+    btn.classList.toggle('is-sending', on);
+    label.textContent = on ? 'Sending…' : 'Send enquiry';
+  }
+  function showDone(name, cls, duplicate) {
+    $('doneName').textContent = name.split(/\s+/)[0];
+    $('doneClass').textContent = cls;
+    $('doneSent').hidden = duplicate;
+    $('doneDuplicate').hidden = !duplicate;
+    form.hidden = true;
+    done.hidden = false;
+    done.focus();
+  }
+
+  function send(payload) {
+    var ctrl = 'AbortController' in window ? new AbortController() : null;
+    var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 15000) : null;
+    var opts = { method: 'POST', headers: { Accept: 'application/json' }, signal: ctrl ? ctrl.signal : undefined };
+    if (enq.format === 'form') {
+      var fd = new FormData();
+      Object.keys(payload).forEach(function (k) { fd.append(k, payload[k]); });
+      opts.body = fd;
+    } else {
+      opts.headers['Content-Type'] = 'application/json';
+      opts.body = JSON.stringify(payload);
+    }
+    return fetch(endpoint, opts).then(function (res) {
+      if (timer) clearTimeout(timer);
+      var type = res.headers.get('content-type') || '';
+      var body = type.indexOf('json') > -1 ? res.json().catch(function () { return {}; }) : Promise.resolve({});
+      return body.then(function (data) {
+        if (!res.ok || data.success === false || data.ok === false) {
+          var err = new Error('Rejected'); err.status = res.status; throw err;
+        }
+      });
+    }, function (err) { if (timer) clearTimeout(timer); throw err; });
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (sending) return;
+    errBox.hidden = true;
+
+    var firstBad = null;
+    Object.keys(rules).forEach(function (id) { if (!check(id) && !firstBad) firstBad = id; });
+    if (firstBad) { $(firstBad).focus(); return; }
+
+    var name = $('f-name').value.trim();
+    var email = $('f-email').value.trim();
+    var mob = cleanMobile(mobile.value);
+    var cls = $('f-class').value;
+    var fp = fingerprint(email, mob, cls);
+
+    if (alreadySent(fp)) { showDone(name, cls, true); return; }
+    if ($('f-website').value) { showDone(name, cls, false); return; } // spam trap: silently drop
+
+    var subject = 'Admission enquiry: ' + cls + ' – ' + name;
+    var payload = Object.assign({}, enq.extraFields || {}, {
+      name: name,
+      email: email,
+      mobile: '+91 ' + mob,
+      class: cls,
+      message: $('f-msg').value.trim(),
+      consent: 'Yes, agreed to be contacted about this enquiry',
+      academicYear: (C.admissions && C.admissions.academicYear) || '',
+      page: location.href,
+      submittedAt: new Date().toISOString(),
+      subject: subject,
+      _subject: subject
+    });
+
+    setSending(true);
+    send(payload).then(function () {
+      remember(fp);
+      showDone(name, cls, false);
+      form.reset();
+      form.querySelectorAll('[aria-invalid]').forEach(function (el) { el.removeAttribute('aria-invalid'); });
+    }).catch(function (err) {
+      $('formErrorText').textContent = err && err.name === 'AbortError'
+        ? 'The connection took too long. Check your internet connection and try again.'
+        : (err && err.status >= 400 && err.status < 500
+            ? 'The enquiry service did not accept the form. Please try again later.'
+            : 'Please check your internet connection and try again. Your details are still in the form.');
+      errBox.hidden = false;
+    }).then(function () { setSending(false); });
+  });
+
+  $('formReset').addEventListener('click', function () {
+    done.hidden = true;
+    form.hidden = false;
+    $('f-name').focus();
+  });
 })();
 </script>
 </body>

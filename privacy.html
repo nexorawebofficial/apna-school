@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Privacy Policy · Apna School</title>
+<meta name="description" content="How Apna School collects, uses and protects personal information shared through this website.">
+<meta name="theme-color" content="#0B1F3A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 48'%3E%3Cpath d='M3 46V19a17 17 0 0 1 34 0v27z' fill='%230B1F3A' stroke='%23D89B25' stroke-width='2'/%3E%3Ctext x='20' y='37' text-anchor='middle' font-family='Georgia,serif' font-size='15' font-weight='700' fill='%23F8F4EC'%3EAS%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700&family=Tiro+Devanagari+Hindi&display=swap">
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script src="assets/tw-config.js"></script>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header id="siteHeader" class="site-header" data-site-header data-home="index.html" data-solid></header>
+
+<main id="main">
+<section class="page-hero on-dark" aria-labelledby="page-title">
+  <div class="wrap relative z-10">
+    <p class="eyebrow">Policies</p>
+    <h1 id="page-title" class="display mt-4">Privacy Policy</h1>
+    <p class="mt-5 max-w-2xl text-ivory/85">How we collect, use and protect the personal information you share with us through this website.</p>
+    <p class="mt-3 text-xs text-ivory/70" data-show-if="legal.lastUpdated" hidden>Last updated: <span data-bind-date="legal.lastUpdated"></span></p>
+  </div>
+</section>
+
+<section class="section !pt-12">
+  <div class="wrap">
+    <article class="legal">
+      <p>This policy explains how <span data-bind="school.name"></span> (“the school”, “we”) handles personal information shared through this website. We handle personal data in line with the Digital Personal Data Protection Act, 2023 and other applicable Indian laws.</p>
+
+      <h2>What we collect</h2>
+      <p>When you send an admission enquiry, we collect:</p>
+      <ul>
+        <li>the parent or guardian’s name</li>
+        <li>email address and mobile number</li>
+        <li>the class you are applying for</li>
+        <li>anything you choose to write in the message box</li>
+      </ul>
+      <p>We do not ask for your child’s name, date of birth, photographs or documents through this website. Those are collected only during formal registration at the school.</p>
+
+      <h3>Technical information</h3>
+      <p>This website does not use advertising or analytics cookies. Fonts and page styling are loaded from Google Fonts and other content delivery services, which receive your device’s IP address in order to send those files. <span data-show-if="school.showMap" hidden>The map on this website is provided by Google Maps and is subject to Google’s privacy policy.</span></p>
+
+      <h2>How we use it</h2>
+      <ul>
+        <li>to reply to your enquiry and share the admission information you asked for</li>
+        <li>to arrange a campus visit or admission interaction</li>
+        <li>to keep a record of enquiries for the admission cycle</li>
+      </ul>
+      <p>We do not sell your information or use it for unrelated marketing.</p>
+
+      <h2>Who can see it</h2>
+      <p>Your enquiry is delivered to the admissions office through a secure (HTTPS) form-processing service. Only school staff involved in admissions can access it. We share information with government or regulatory authorities only when the law requires it.</p>
+
+      <h2>How long we keep it</h2>
+      <p>We keep enquiry details only for as long as they are needed for the admission process, unless your child joins the school or the law requires us to keep them longer. After that, they are deleted.</p>
+
+      <h2>Your rights</h2>
+      <p>You can ask us to:</p>
+      <ul>
+        <li>tell you what personal information we hold about you</li>
+        <li>correct or update it</li>
+        <li>delete it</li>
+        <li>stop contacting you, by withdrawing your consent at any time</li>
+      </ul>
+      <p data-show-if="legal.privacyEmail|school.email" hidden>To use any of these rights or ask a question, write to <a data-privacy-email href="#"></a>.</p>
+      <p data-show-if="!legal.privacyEmail&!school.email" hidden>To use any of these rights or ask a question, please contact the school office.</p>
+      <p>If you are not satisfied with our response, you can raise it through our <a href="grievance.html">grievance redressal process</a>.</p>
+
+      <h2>Changes to this policy</h2>
+      <p>We may update this policy from time to time. The date at the top of this page shows when it was last changed.</p>
+    </article>
+  </div>
+</section>
+</main>
+
+<footer id="contact" class="footer" data-site-footer data-home="index.html"></footer>
+
+<script src="config.js"></script>
+<script src="assets/common.js"></script>
+<script>
+  (function () {
+    var C = window.School.config, S = window.School;
+    var mail = S.has(C.legal && C.legal.privacyEmail) ? C.legal.privacyEmail : (C.school && C.school.email);
+    document.querySelectorAll('[data-privacy-email]').forEach(function (a) {
+      if (!S.has(mail)) return;
+      a.textContent = mail.trim();
+      a.setAttribute('href', 'mailto:' + mail.trim());
+    });
+  })();
+</script>
+</body>
+</html>

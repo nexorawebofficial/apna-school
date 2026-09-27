@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Grievance Redressal · Apna School</title>
+<meta name="description" content="How parents, students and visitors can raise a concern or complaint with Apna School.">
+<meta name="theme-color" content="#0B1F3A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 48'%3E%3Cpath d='M3 46V19a17 17 0 0 1 34 0v27z' fill='%230B1F3A' stroke='%23D89B25' stroke-width='2'/%3E%3Ctext x='20' y='37' text-anchor='middle' font-family='Georgia,serif' font-size='15' font-weight='700' fill='%23F8F4EC'%3EAS%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700&family=Tiro+Devanagari+Hindi&display=swap">
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script src="assets/tw-config.js"></script>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header id="siteHeader" class="site-header" data-site-header data-home="index.html" data-solid></header>
+
+<main id="main">
+<section class="page-hero on-dark" aria-labelledby="page-title">
+  <div class="wrap relative z-10">
+    <p class="eyebrow">Parents & students</p>
+    <h1 id="page-title" class="display mt-4">Grievance Redressal</h1>
+    <p class="mt-5 max-w-2xl text-ivory/85">How parents, students and visitors can raise a concern, and how the school will handle it.</p>
+    <p class="mt-3 text-xs text-ivory/70" data-show-if="legal.lastUpdated" hidden>Last updated: <span data-bind-date="legal.lastUpdated"></span></p>
+  </div>
+</section>
+
+<section class="section !pt-12">
+  <div class="wrap">
+    <article class="legal">
+      <p>We want every concern to be heard and resolved fairly. Most issues are settled quickly by talking with the teacher concerned, so we encourage you to start there.</p>
+
+      <h2>How to raise a concern</h2>
+      <ol>
+        <li><strong>Speak with the class teacher</strong> or the staff member directly involved.</li>
+        <li><strong>Write to the grievance officer</strong> if the matter is not resolved. Include the student’s name, class and section, a clear description of the concern, and any supporting details.</li>
+        <li><strong>Ask to meet the Principal</strong> if you are not satisfied with the outcome.</li>
+      </ol>
+
+      <div data-show-if="legal.grievance.officerName|legal.grievance.email|legal.grievance.phone" hidden>
+        <h2>Grievance officer</h2>
+        <div class="note-card mt-4">
+          <p class="!mt-0 text-lg font-bold text-navy" data-show-if="legal.grievance.officerName" data-bind="legal.grievance.officerName" hidden></p>
+          <p class="!mt-0" data-show-if="legal.grievance.designation" data-bind="legal.grievance.designation" hidden></p>
+          <ul class="!list-none !pl-0">
+            <li data-show-if="legal.grievance.email" hidden><a class="contact-row" data-bind-href="legal.grievance.email" data-href-kind="mailto" href="#"><span data-bind="legal.grievance.email"></span></a></li>
+            <li data-show-if="legal.grievance.phone" hidden><a class="contact-row" data-bind-href="legal.grievance.phone" data-href-kind="tel" href="#"><span data-bind="legal.grievance.phone"></span></a></li>
+          </ul>
+        </div>
+      </div>
+      <p data-show-if="!legal.grievance.officerName&!legal.grievance.email&!legal.grievance.phone" hidden>Written concerns can be addressed to the Principal, <span data-bind="principal.name"></span>, and handed in at the school office<span data-show-if="school.email" hidden> or emailed to <a data-bind-href="school.email" data-href-kind="mailto" href="#"><span data-bind="school.email"></span></a></span>.</p>
+      <p data-show-if="legal.grievance.responseTime" hidden>We aim to respond <span data-bind="legal.grievance.responseTime"></span>.</p>
+
+      <h2>Child safety concerns</h2>
+      <p>Any concern about a child’s safety or wellbeing is treated as urgent. Please raise it directly with the Principal. In an emergency, call <strong>112</strong>. For child protection support, call <strong>CHILDLINE 1098</strong>.</p>
+
+      <h2>Privacy concerns</h2>
+      <p>Concerns about how we handle personal information are covered in our <a href="privacy.html">privacy policy</a>.</p>
+
+      <h2>If the matter is still not resolved</h2>
+      <p>If you are not satisfied after following these steps, you may approach the relevant education authorities, such as the District Education Officer<span data-show-if="school.board" hidden> or the <span data-bind="school.board"></span> regional office</span>.</p>
+    </article>
+  </div>
+</section>
+</main>
+
+<footer id="contact" class="footer" data-site-footer data-home="index.html"></footer>
+
+<script src="config.js"></script>
+<script src="assets/common.js"></script>
+
+</body>
+</html>
