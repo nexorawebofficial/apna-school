@@ -117,7 +117,20 @@ window.SCHOOL_CONFIG = {
      consent, and set consent: true. Example:
        { quote: "…", name: "Anita Verma", role: "Parent of a Class V student", consent: true }
      ------------------------------------------------------------------ */
-  testimonials: [],
+  testimonials: [
+    {
+      quote: "Our daughter used to be shy about speaking in class. Two years on, she anchored the annual day programme in both Hindi and English. The teachers noticed her before we did.",
+      name: "Naresh",
+      role: "Parent",
+      consent: true
+    },
+    {
+      quote: "The science teachers let us fail at experiments until we understood why. That habit helped me more in Class XII than any guidebook ever did.",
+      name: "Diya",
+      role: "Student",
+      consent: true
+    }
+  ],
 
   /* ------------------------------------------------------------------
      SOCIAL MEDIA  (each icon is hidden until its link is added)
