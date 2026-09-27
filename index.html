@@ -1,0 +1,1093 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Apna School</title>
+<meta name="description" content="Apna School — Nursery to Class XII. Holistic Indian education with academic rigour, values and a wide world of sport and the arts.">
+
+<!--
+  APNA SCHOOL — single-page website
+  ---------------------------------------------------------------
+  • Stack: HTML + Tailwind CSS (Play CDN for preview; compile with the Tailwind CLI for production).
+  • Every factual detail that the school must confirm is wrapped in <span class="ph">…</span>
+    (dashed underline). Search for class="ph" to find them all.
+  • Photos: drop real images into /images using the filenames referenced below.
+    If a file is missing, the illustrated fallback is shown automatically.
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700&family=Tiro+Devanagari+Hindi&display=swap">
+
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: { DEFAULT: '#0B1F3A', 900: '#071429', 700: '#1B3257' },
+          ivory: { DEFAULT: '#F8F4EC', 2: '#F1EADC' },
+          gold: { DEFAULT: '#D89B25', soft: '#E9BC5E', ink: '#8A5C0E' },
+          sage: { DEFAULT: '#7C9270', ink: '#4E6445' },
+          muted: '#4A5872',
+          line: '#E4D9C3'
+        },
+        fontFamily: {
+          serif: ['"Cormorant Garamond"', 'Georgia', '"Times New Roman"', 'serif'],
+          sans: ['Manrope', 'system-ui', '-apple-system', '"Segoe UI"', 'Roboto', 'sans-serif']
+        },
+        maxWidth: { site: '76rem' }
+      }
+    }
+  }
+</script>
+
+<style>
+  :root {
+    --navy: #0B1F3A; --navy-900: #071429; --navy-700: #1B3257;
+    --ivory: #F8F4EC; --ivory-2: #F1EADC;
+    --gold: #D89B25; --gold-soft: #E9BC5E; --gold-ink: #8A5C0E;
+    --sage: #7C9270; --sage-ink: #4E6445;
+    --muted: #4A5872; --line: #E4D9C3; --white: #FFFFFF;
+    --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+    --sans: Manrope, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --deva: "Tiro Devanagari Hindi", "Noto Serif Devanagari", "Nirmala UI", serif;
+    --shadow-soft: 0 1px 2px rgba(11,31,58,.04), 0 14px 34px -14px rgba(11,31,58,.16);
+    --shadow-lift: 0 2px 4px rgba(11,31,58,.05), 0 24px 48px -18px rgba(11,31,58,.28);
+    --jaali: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='36' height='36'><path d='M18 0L36 18L18 36L0 18Z M18 7L29 18L18 29L7 18Z' fill='none' stroke='%23D89B25' stroke-width='.8'/><circle cx='18' cy='18' r='1.6' fill='%23D89B25'/></svg>");
+    color-scheme: light;
+  }
+
+  html { -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  body { background: var(--ivory); color: var(--navy); font-family: var(--sans); font-size: 16px; line-height: 1.65; font-size-adjust: none; }
+  section[id], footer[id] { scroll-margin-top: 84px; }
+
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+  .skip-link { position: absolute; left: 16px; top: -60px; z-index: 100; background: var(--gold); color: var(--navy); padding: 10px 16px; border-radius: 8px; font-weight: 700; }
+  .skip-link:focus { top: 12px; }
+
+  /* ---------- Type ---------- */
+  .display { font-family: var(--serif); font-weight: 600; letter-spacing: -.01em; line-height: 1.05; text-wrap: balance; }
+  .h2 { font-family: var(--serif); font-weight: 600; font-size: clamp(2.1rem, 1.5rem + 2.2vw, 3.25rem); line-height: 1.08; letter-spacing: -.01em; text-wrap: balance; }
+  .h3 { font-family: var(--serif); font-weight: 600; font-size: 1.6rem; line-height: 1.15; }
+  .lede { font-size: 1.075rem; color: var(--muted); max-width: 62ch; }
+  .eyebrow { display: inline-flex; align-items: center; gap: .75rem; font-size: .75rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-ink); }
+  .eyebrow::before { content: ""; width: 28px; height: 1px; background: currentColor; opacity: .7; }
+  .on-dark .eyebrow { color: var(--gold-soft); }
+  .deva { font-family: var(--deva); }
+
+  /* Editable placeholder marker */
+  .ph { border-bottom: 1px dashed currentColor; text-decoration: none; cursor: help; }
+
+  /* Gold divider with a diamond */
+  .divider { display: flex; align-items: center; gap: 12px; color: var(--gold); }
+  .divider::before, .divider::after { content: ""; height: 1px; flex: 1; background: linear-gradient(90deg, transparent, currentColor); opacity: .55; }
+  .divider::after { background: linear-gradient(90deg, currentColor, transparent); }
+  .divider i { width: 7px; height: 7px; transform: rotate(45deg); border: 1px solid currentColor; }
+
+  /* ---------- Buttons ---------- */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: .6rem; padding: .9rem 1.4rem; border-radius: 10px; font-weight: 700; font-size: .95rem; line-height: 1.2; transition: background-color .25s, color .25s, border-color .25s, transform .25s, box-shadow .25s; white-space: nowrap; }
+  .btn svg { transition: transform .25s; }
+  .btn:hover svg { transform: translateX(3px); }
+  .btn-gold { background: var(--gold); color: var(--navy); box-shadow: 0 10px 24px -10px rgba(216,155,37,.7); }
+  .btn-gold:hover { background: #E6AC3F; transform: translateY(-1px); }
+  .btn-ghost { border: 1px solid rgba(248,244,236,.45); color: var(--ivory); background: rgba(248,244,236,.04); backdrop-filter: blur(4px); }
+  .btn-ghost:hover { border-color: var(--gold-soft); background: rgba(248,244,236,.1); }
+  .btn-navy { background: var(--navy); color: var(--ivory); }
+  .btn-navy:hover { background: var(--navy-700); transform: translateY(-1px); }
+  .btn-sm { padding: .65rem 1.05rem; font-size: .875rem; }
+
+  /* ---------- Header ---------- */
+  .site-header { position: fixed; inset: 0 0 auto 0; z-index: 50; padding-top: env(safe-area-inset-top, 0px); color: var(--ivory); transition: background-color .35s, box-shadow .35s, color .35s; }
+  .site-header.is-scrolled, .site-header.menu-open { background: rgba(248,244,236,.94); backdrop-filter: saturate(1.2) blur(12px); color: var(--navy); box-shadow: 0 1px 0 var(--line), 0 10px 30px -20px rgba(11,31,58,.35); }
+  .site-header.menu-open { background: var(--ivory); }
+  .brand-name { font-family: var(--serif); font-weight: 700; font-size: 1.45rem; line-height: 1; letter-spacing: .01em; }
+  .brand-sub { font-size: .66rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 600; opacity: .75; }
+  .nav-link { position: relative; font-size: .9rem; font-weight: 600; padding: .4rem 0; opacity: .9; }
+  .nav-link::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 1px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform .3s; }
+  .nav-link:hover, .nav-link[aria-current="true"] { opacity: 1; }
+  .nav-link:hover::after, .nav-link[aria-current="true"]::after { transform: scaleX(1); }
+  .menu-btn { width: 44px; height: 44px; display: inline-grid; place-items: center; border-radius: 10px; border: 1px solid currentColor; border-color: color-mix(in srgb, currentColor 30%, transparent); }
+  .mobile-menu a.m-link { display: block; padding: 1rem 0; border-bottom: 1px solid var(--line); font-family: var(--serif); font-size: 1.5rem; font-weight: 600; }
+
+  /* ---------- Hero ---------- */
+  .hero { position: relative; isolation: isolate; overflow: hidden; background: var(--navy); color: var(--ivory); min-height: clamp(620px, 92vh, 820px); display: flex; align-items: flex-end; }
+  .hero-media, .hero-media > * { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .hero-media { z-index: -1; }
+  .hero-scene { display: block; }
+  .hero-scene g[data-depth] { will-change: transform; }
+  .hero-photo { object-fit: cover; object-position: 65% 60%; }
+  .hero-bloom { background: radial-gradient(ellipse 45% 55% at 78% 66%, rgba(246,196,106,.38), rgba(246,196,106,0) 70%); mix-blend-mode: screen; pointer-events: none; }
+  .hero-overlay { background:
+      linear-gradient(90deg, rgba(11,31,58,.95) 0%, rgba(11,31,58,.86) 30%, rgba(11,31,58,.45) 58%, rgba(11,31,58,.12) 100%),
+      linear-gradient(0deg, rgba(7,20,41,.92) 0%, rgba(7,20,41,0) 38%),
+      linear-gradient(180deg, rgba(7,20,41,.55) 0%, rgba(7,20,41,0) 22%); }
+  @media (max-width: 767px) {
+    .hero-overlay { background: linear-gradient(180deg, rgba(11,31,58,.55) 0%, rgba(11,31,58,.78) 45%, rgba(7,20,41,.96) 100%); }
+  }
+  .hero-grain { opacity: .16; mix-blend-mode: overlay; pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+  .hero h1 { font-size: clamp(2.9rem, 1.6rem + 5.2vw, 5.6rem); }
+  .hero h1 em { font-style: italic; font-weight: 500; color: var(--gold-soft); }
+  .hero-copy { color: rgba(248,244,236,.86); font-size: 1.1rem; max-width: 34rem; }
+  .motto { font-size: 1.05rem; color: var(--gold-soft); letter-spacing: .02em; }
+  .trust { border-top: 1px solid rgba(233,188,94,.28); }
+  .trust-item + .trust-item { border-left: 1px solid rgba(233,188,94,.28); }
+  @media (max-width: 639px) { .trust-item + .trust-item { border-left: 0; border-top: 1px solid rgba(233,188,94,.2); } }
+  .trust-num { font-family: var(--serif); font-size: 1.9rem; font-weight: 600; line-height: 1; color: var(--ivory); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-in > * { animation: rise .9s cubic-bezier(.2,.7,.2,1) both; }
+    .hero-in > *:nth-child(2) { animation-delay: .08s; }
+    .hero-in > *:nth-child(3) { animation-delay: .16s; }
+    .hero-in > *:nth-child(4) { animation-delay: .26s; }
+    .hero-in > *:nth-child(5) { animation-delay: .36s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  }
+
+  /* ---------- Sections ---------- */
+  .section { padding-block: clamp(4.5rem, 3rem + 5vw, 7.5rem); }
+  .wrap { max-width: 76rem; margin-inline: auto; padding-inline: 1rem; }
+  @media (min-width: 640px) { .wrap { padding-inline: 1.5rem; } }
+  @media (min-width: 1024px) { .wrap { padding-inline: 2rem; } }
+
+  /* Principal */
+  .arch-frame { position: relative; aspect-ratio: 4 / 5; max-width: 100%; border-radius: 999px 999px 18px 18px; overflow: hidden; background: linear-gradient(170deg, #1B3257 0%, #0B1F3A 70%); box-shadow: var(--shadow-lift); }
+  .arch-frame::before { content: ""; position: absolute; inset: 14px; border-radius: 999px 999px 10px 10px; border: 1px solid rgba(233,188,94,.5); pointer-events: none; z-index: 2; }
+  .arch-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .arch-backdrop { position: absolute; inset: -22px -22px auto auto; width: 70%; height: 70%; background-image: var(--jaali); background-size: 26px; opacity: .35; border-radius: 16px; z-index: -1; }
+  .signature { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 2.1rem; line-height: 1; color: var(--navy); }
+  .pull { font-family: var(--serif); font-size: clamp(1.7rem, 1.2rem + 1.5vw, 2.4rem); line-height: 1.2; font-weight: 500; text-wrap: balance; }
+
+  /* Cards */
+  .card { position: relative; background: var(--white); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow-soft); transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s, border-color .35s; overflow: hidden; }
+  .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); border-color: #D9C49A; }
+  .card-motif { position: absolute; top: -30px; right: -30px; width: 130px; height: 130px; background-image: var(--jaali); background-size: 22px; opacity: .18; border-radius: 50%; mask-image: radial-gradient(circle, #000 35%, transparent 70%); -webkit-mask-image: radial-gradient(circle, #000 35%, transparent 70%); transition: opacity .35s; }
+  .card:hover .card-motif { opacity: .38; }
+  .medallion { width: 56px; height: 56px; display: grid; place-items: center; border-radius: 50%; background: var(--ivory); border: 1px solid #E8D6AE; color: var(--gold-ink); box-shadow: inset 0 0 0 5px var(--white); }
+
+  /* Academics */
+  .stage { position: relative; padding-top: 2.25rem; }
+  .stage::before { content: ""; position: absolute; top: 10px; left: 0; right: 0; height: 1px; background: var(--line); }
+  .stage-dot { position: absolute; top: 4px; left: 0; width: 13px; height: 13px; transform: rotate(45deg); background: var(--ivory); border: 1.5px solid var(--gold); }
+  .stage-no { font-family: var(--serif); font-size: 3.2rem; line-height: 1; color: #CDBB97; font-weight: 500; font-variant-numeric: lining-nums; }
+  .stage-meta { font-size: .8rem; font-weight: 700; letter-spacing: .06em; color: var(--sage-ink); text-transform: uppercase; }
+  .thread { border-top: 1px solid var(--line); padding-top: 1.1rem; }
+
+  /* Campus tiles */
+  .tile { position: relative; overflow: hidden; border-radius: 16px; isolation: isolate; color: var(--ivory); min-height: 240px; box-shadow: var(--shadow-soft); }
+  .tile-art { position: absolute; inset: 0; z-index: -2; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+  .tile-art::before { content: ""; position: absolute; inset: 0; background-image: var(--jaali); background-size: 30px; opacity: .1; }
+  .tile-art::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 80% 15%, rgba(255,226,160,.28), transparent 55%); }
+  .tile-art svg { position: absolute; right: 8%; top: 12%; width: 34%; max-width: 150px; height: auto; color: rgba(248,244,236,.42); }
+  .tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+  .tile::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgba(7,20,41,.9) 0%, rgba(7,20,41,.35) 45%, rgba(7,20,41,0) 75%); }
+  .tile:hover .tile-art, .tile:hover img { transform: scale(1.05); }
+  .tile-label { position: absolute; left: 0; right: 0; bottom: 0; padding: 1.4rem 1.5rem; }
+  .tile-label h3 { font-family: var(--serif); font-size: 1.65rem; font-weight: 600; line-height: 1.1; }
+  .tile-label p { font-size: .9rem; color: rgba(248,244,236,.82); max-width: 40ch; }
+  .tile-tag { position: absolute; top: 14px; left: 14px; font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; padding: .3rem .6rem; border-radius: 6px; background: rgba(7,20,41,.45); border: 1px solid rgba(248,244,236,.2); backdrop-filter: blur(4px); }
+  .t-class { background: linear-gradient(140deg, #24406A 0%, #0B1F3A 60%, #1E3A34 100%); }
+  .t-lib   { background: linear-gradient(160deg, #8A6533 0%, #3D2B17 100%); }
+  .t-lab   { background: linear-gradient(160deg, #5A7552 0%, #1D2E27 100%); }
+  .t-sport { background: linear-gradient(115deg, #7C9270 0%, #3A573F 45%, #0B1F3A 100%); }
+  .t-music { background: linear-gradient(140deg, #8E4F31 0%, #3A1E19 100%); }
+  .t-arts  { background: linear-gradient(140deg, #C98A2B 0%, #7A4A14 100%); }
+
+  /* Stats band */
+  .stats { background: var(--navy); color: var(--ivory); position: relative; overflow: hidden; }
+  .stats::before { content: ""; position: absolute; inset: 0; background-image: var(--jaali); background-size: 34px; opacity: .06; }
+  .stat + .stat { border-left: 1px solid rgba(233,188,94,.25); }
+  @media (max-width: 767px) { .stat:nth-child(odd) { border-left: 0; } .stat:nth-child(n+3) { border-top: 1px solid rgba(233,188,94,.25); } }
+  .stat-num { font-family: var(--serif); font-size: clamp(2.8rem, 2rem + 2.6vw, 4.2rem); font-weight: 600; line-height: 1; color: var(--gold-soft); font-variant-numeric: lining-nums tabular-nums; }
+
+  /* Admissions */
+  .step-no { flex: none; width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--gold); color: var(--gold-ink); font-family: var(--serif); font-size: 1.35rem; font-weight: 600; background: var(--white); }
+  .steps li { position: relative; }
+  .steps li:not(:last-child)::after { content: ""; position: absolute; left: 21.5px; top: 50px; bottom: -14px; width: 1px; background: linear-gradient(var(--gold), transparent); opacity: .5; }
+  .callout { background: var(--navy); color: var(--ivory); border-radius: 16px; position: relative; overflow: hidden; }
+  .callout::after { content: ""; position: absolute; right: -40px; bottom: -40px; width: 180px; height: 180px; background-image: var(--jaali); background-size: 24px; opacity: .12; border-radius: 50%; }
+  .form-card { background: var(--white); border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow-lift); }
+  .field label.lbl { display: block; font-size: .82rem; font-weight: 700; margin-bottom: .4rem; color: var(--navy); }
+  .field .req { color: #9A3B1B; }
+  .input { width: 100%; border: 1px solid #D8CDB6; background: #FDFBF7; border-radius: 10px; padding: .8rem .95rem; font: inherit; font-size: .95rem; color: var(--navy); transition: border-color .2s, box-shadow .2s, background-color .2s; }
+  .input::placeholder { color: #8A93A3; }
+  .input:hover { border-color: #C4B28C; }
+  .input:focus { outline: none; border-color: var(--gold); background: var(--white); box-shadow: 0 0 0 4px rgba(216,155,37,.18); }
+  .input[aria-invalid="true"] { border-color: #B4441F; box-shadow: 0 0 0 3px rgba(180,68,31,.12); }
+  .prefix-wrap { display: flex; }
+  .prefix-wrap .prefix { display: grid; place-items: center; padding-inline: .85rem; border: 1px solid #D8CDB6; border-right: 0; border-radius: 10px 0 0 10px; background: var(--ivory-2); font-weight: 600; font-size: .9rem; color: var(--muted); }
+  .prefix-wrap .input { border-radius: 0 10px 10px 0; }
+  select.input { appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%230B1F3A' stroke-width='1.6'/></svg>"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
+  .err { color: #9A3B1B; font-size: .8rem; font-weight: 600; margin-top: .35rem; }
+  .check { width: 20px; height: 20px; accent-color: var(--navy); flex: none; margin-top: 2px; }
+
+  /* Testimonials */
+  .quote-card { position: relative; background: var(--white); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow-soft); }
+  .quote-mark { font-family: var(--serif); font-size: 5.5rem; line-height: .6; color: var(--gold); opacity: .75; height: 2.4rem; display: block; }
+  .quote-card blockquote p { font-family: var(--serif); font-size: clamp(1.35rem, 1.1rem + .8vw, 1.7rem); line-height: 1.35; font-weight: 500; text-wrap: pretty; }
+
+  /* Footer */
+  .footer { background: var(--navy-900); color: rgba(248,244,236,.78); }
+  .footer h3 { color: var(--ivory); font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; }
+  .footer a.f-link { transition: color .2s; }
+  .footer a.f-link:hover { color: var(--gold-soft); }
+  .social { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 50%; border: 1px solid rgba(248,244,236,.2); color: var(--ivory); transition: border-color .2s, background-color .2s, color .2s; }
+  .social:hover { border-color: var(--gold); background: var(--gold); color: var(--navy); }
+
+  /* Reveal on scroll (only when motion is allowed) */
+  .motion-ok .reveal { transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); }
+  .motion-ok .reveal:not(.is-in) { opacity: 0; transform: translateY(22px); }
+  .motion-ok .reveal[data-delay="1"] { transition-delay: .08s; }
+  .motion-ok .reveal[data-delay="2"] { transition-delay: .16s; }
+  .motion-ok .reveal[data-delay="3"] { transition-delay: .24s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ======================= HEADER ======================= -->
+<header id="siteHeader" class="site-header">
+  <div class="wrap flex h-[76px] items-center justify-between gap-4">
+    <a href="#top" class="flex items-center gap-3" aria-label="Apna School, back to top">
+      <!-- Logo placeholder: replace this SVG with the school crest -->
+      <svg viewBox="0 0 40 48" width="34" height="41" aria-hidden="true">
+        <path d="M3 46V19a17 17 0 0 1 34 0v27z" fill="#0B1F3A" stroke="#D89B25" stroke-width="1.5"/>
+        <path d="M8 46V20a12 12 0 0 1 24 0v26" fill="none" stroke="#D89B25" stroke-width=".75" opacity=".55"/>
+        <text x="20" y="37" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-size="15" font-weight="700" fill="#F8F4EC">AS</text>
+      </svg>
+      <span class="flex flex-col gap-1">
+        <span class="brand-name">Apna School</span>
+        <span class="brand-sub">Nursery to Class XII</span>
+      </span>
+    </a>
+
+    <nav aria-label="Primary" class="hidden lg:block">
+      <ul class="flex items-center gap-8">
+        <li><a class="nav-link" href="#about">About</a></li>
+        <li><a class="nav-link" href="#academics">Academics</a></li>
+        <li><a class="nav-link" href="#campus">Campus Life</a></li>
+        <li><a class="nav-link" href="#admissions">Admissions</a></li>
+        <li><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a href="#enquiry" class="btn btn-gold btn-sm">Apply Now</a>
+      <button id="menuBtn" class="menu-btn lg:hidden" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+        <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path id="menuIcon" d="M2 5h16M2 10h16M2 15h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobileMenu" class="mobile-menu lg:hidden" hidden>
+    <nav aria-label="Mobile" class="wrap pb-6">
+      <a class="m-link" href="#about">About</a>
+      <a class="m-link" href="#academics">Academics</a>
+      <a class="m-link" href="#campus">Campus Life</a>
+      <a class="m-link" href="#admissions">Admissions</a>
+      <a class="m-link" href="#contact">Contact</a>
+      <a class="btn btn-navy mt-6 w-full" href="#enquiry">Book a Campus Visit</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ======================= HERO ======================= -->
+<section id="top" class="hero" aria-labelledby="hero-title">
+  <div class="hero-media">
+    <!-- Illustrated fallback: Indian heritage-style campus at golden hour -->
+    <svg id="heroScene" class="hero-scene" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="img"
+         aria-label="Illustration of a heritage-style school building at golden hour, with a domed clock tower, arched verandas, Ashoka trees lining the drive, the Indian flag and students in uniform walking to school.">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#0B1F3A"/>
+          <stop offset=".42" stop-color="#28355A"/>
+          <stop offset=".64" stop-color="#8E6348"/>
+          <stop offset=".78" stop-color="#DFA04C"/>
+          <stop offset="1" stop-color="#F3C877"/>
+        </linearGradient>
+        <radialGradient id="sunGlow" cx=".5" cy=".5" r=".5">
+          <stop offset="0" stop-color="#FFE6A8"/>
+          <stop offset=".3" stop-color="#F6C46A" stop-opacity=".85"/>
+          <stop offset="1" stop-color="#F6C46A" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="facade" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#15243E"/>
+          <stop offset=".6" stop-color="#22324F"/>
+          <stop offset="1" stop-color="#3A3F52"/>
+        </linearGradient>
+        <linearGradient id="lit" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#FFDC8E"/>
+          <stop offset="1" stop-color="#D89B25"/>
+        </linearGradient>
+        <linearGradient id="lawn" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#46553F"/>
+          <stop offset=".35" stop-color="#26352E"/>
+          <stop offset="1" stop-color="#0D1828"/>
+        </linearGradient>
+        <linearGradient id="drive" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#E7B868" stop-opacity=".55"/>
+          <stop offset="1" stop-color="#6E5536" stop-opacity=".25"/>
+        </linearGradient>
+        <path id="arch" d="M0 44V13a11 11 0 0 1 22 0v31z"/>
+        <path id="archL" d="M0 64V16a16 16 0 0 1 32 0v48z"/>
+        <g id="chhatri" fill="#1B2A45">
+          <rect x="-30" y="-6" width="60" height="6"/>
+          <rect x="-24" y="-32" width="5" height="26"/><rect x="-9" y="-32" width="5" height="26"/>
+          <rect x="4" y="-32" width="5" height="26"/><rect x="19" y="-32" width="5" height="26"/>
+          <rect x="-32" y="-38" width="64" height="6"/>
+          <path d="M-26 -38C-26 -62-6 -68 0 -80C6 -68 26 -62 26 -38Z"/>
+          <path d="M0 -80V-92" stroke="#D89B25" stroke-width="2"/>
+        </g>
+        <g id="ashoka">
+          <path d="M0 -170C-14 -130-18 -60-12 0H12C18 -60 14 -130 0 -170Z" fill="#0F1D22"/>
+          <path d="M0 -170C8 -130 14 -60 12 0H6C9 -60 5 -130 0 -170Z" fill="#D89B25" opacity=".28"/>
+        </g>
+        <g id="kidA">
+          <circle cx="0" cy="-39" r="5.5" fill="#3B2A20"/>
+          <path d="M-7 -32h14l2 17h-18z" fill="#F2EEE6"/>
+          <path d="M-7 -15h6v15h-5zM1 -15h6l-1 15h-5z" fill="#16284A"/>
+          <rect x="4" y="-31" width="7" height="12" rx="2" fill="#7A3B22"/>
+        </g>
+        <g id="kidB">
+          <path d="M-5 -42c0-5 10-5 10 0v4l2 12h-3l-1-10z" fill="#2A1C14"/>
+          <circle cx="0" cy="-39" r="5.3" fill="#3B2A20"/>
+          <path d="M-6.5 -32h13l1.5 7h-16z" fill="#F2EEE6"/>
+          <path d="M-8 -25h16l3 15h-22z" fill="#16284A"/>
+          <path d="M-5 -10h3v10h-3zM2 -10h3v10h-3z" fill="#E9E3D6"/>
+        </g>
+        <g id="wingWindows" fill="url(#lit)">
+          <use href="#arch" x="220" y="500" opacity=".85"/><use href="#arch" x="260" y="500" opacity=".35"/>
+          <use href="#arch" x="300" y="500" opacity=".8"/><use href="#arch" x="340" y="500" opacity=".85"/>
+          <use href="#arch" x="380" y="500" opacity=".4"/><use href="#arch" x="420" y="500" opacity=".9"/>
+          <use href="#arch" x="460" y="500" opacity=".8"/><use href="#arch" x="500" y="500" opacity=".35"/>
+          <use href="#arch" x="540" y="500" opacity=".85"/><use href="#arch" x="580" y="500" opacity=".8"/>
+          <use href="#arch" x="620" y="500" opacity=".45"/>
+          <use href="#archL" x="222" y="606" opacity=".7"/><use href="#archL" x="276" y="606" opacity=".85"/>
+          <use href="#archL" x="330" y="606" opacity=".7"/><use href="#archL" x="384" y="606" opacity=".85"/>
+          <use href="#archL" x="438" y="606" opacity=".7"/><use href="#archL" x="492" y="606" opacity=".85"/>
+          <use href="#archL" x="546" y="606" opacity=".7"/><use href="#archL" x="600" y="606" opacity=".85"/>
+        </g>
+      </defs>
+
+      <!-- Layer: sky -->
+      <g data-depth=".32">
+        <rect x="0" y="-240" width="1600" height="1340" fill="url(#sky)"/>
+        <circle cx="1300" cy="600" r="300" fill="url(#sunGlow)"/>
+        <circle cx="1300" cy="604" r="56" fill="#FFE3A0" opacity=".92"/>
+        <path d="M0 700V664c40-34 110-34 160-2c40-30 110-36 160-6c50-26 110-24 160 4c40-30 100-34 160-4c50-28 110-30 160-2c40-26 110-34 160 0c50-30 110-30 160-2c40-26 100-30 160 2c50-34 110-30 160-4c40-24 90-26 160 2V700z" fill="#2A3148" opacity=".9"/>
+      </g>
+
+      <!-- Layer: building + grounds -->
+      <g data-depth=".2">
+        <rect x="0" y="700" width="1600" height="420" fill="url(#lawn)"/>
+        <path d="M958 700H1014L1320 1120H660Z" fill="url(#drive)"/>
+        <g transform="translate(330 126) scale(.82)">
+          <rect x="150" y="690" width="1300" height="14" fill="#0F1B30"/>
+          <!-- Left wing -->
+          <rect x="190" y="480" width="470" height="210" fill="url(#facade)"/>
+          <rect x="180" y="470" width="490" height="12" fill="#22314D"/>
+          <rect x="190" y="568" width="470" height="6" fill="#1B2A45"/>
+          <!-- Right wing -->
+          <rect x="940" y="480" width="470" height="210" fill="url(#facade)"/>
+          <rect x="930" y="470" width="490" height="12" fill="#2A3753"/>
+          <rect x="940" y="568" width="470" height="6" fill="#23304A"/>
+          <use href="#wingWindows"/>
+          <use href="#wingWindows" transform="translate(720 0)"/>
+          <!-- Central block -->
+          <rect x="660" y="400" width="280" height="290" fill="#1E2E4B"/>
+          <rect x="648" y="390" width="304" height="12" fill="#2A3A58"/>
+          <rect x="736" y="416" width="128" height="22" fill="#D89B25" opacity=".22"/>
+          <g fill="url(#lit)">
+            <use href="#archL" x="690" y="440" opacity=".8"/><use href="#archL" x="878" y="440" opacity=".85"/>
+            <use href="#archL" x="690" y="530" opacity=".55"/><use href="#archL" x="878" y="530" opacity=".85"/>
+            <use href="#archL" x="690" y="616" opacity=".75"/><use href="#archL" x="878" y="616" opacity=".7"/>
+            <use href="#archL" x="752" y="470" opacity=".7"/><use href="#archL" x="816" y="470" opacity=".7"/>
+            <path d="M760 690V610a40 40 0 0 1 80 0v80z" opacity=".95"/>
+          </g>
+          <rect x="740" y="690" width="120" height="6" fill="#3A4560"/>
+          <rect x="724" y="696" width="152" height="6" fill="#2E3952"/>
+          <!-- Clock tower with chhatri -->
+          <rect x="745" y="250" width="110" height="140" fill="#1C2C49"/>
+          <rect x="735" y="240" width="130" height="10" fill="#2A3A58"/>
+          <circle cx="800" cy="312" r="30" fill="#F3E3BF" opacity=".92" stroke="#D89B25" stroke-width="3"/>
+          <path d="M800 312V292M800 312l13 7" stroke="#0B1F3A" stroke-width="3" stroke-linecap="round"/>
+          <rect x="742" y="232" width="116" height="8" fill="#22324F"/>
+          <g fill="#1B2A45">
+            <rect x="750" y="198" width="6" height="34"/><rect x="776" y="198" width="6" height="34"/>
+            <rect x="818" y="198" width="6" height="34"/><rect x="844" y="198" width="6" height="34"/>
+            <rect x="740" y="192" width="120" height="8"/>
+            <path d="M752 192C752 150 790 138 800 118C810 138 848 150 848 192Z"/>
+          </g>
+          <path d="M786 232V200h28v32" fill="#FFD98A" opacity=".35"/>
+          <path d="M800 118V92" stroke="#D89B25" stroke-width="3"/><circle cx="800" cy="92" r="4" fill="#D89B25"/>
+          <use href="#chhatri" x="215" y="470"/><use href="#chhatri" x="635" y="470"/>
+          <use href="#chhatri" x="965" y="470"/><use href="#chhatri" x="1385" y="470"/>
+          <!-- Hedge -->
+          <rect x="150" y="704" width="560" height="12" rx="6" fill="#1E2B25"/>
+          <rect x="890" y="704" width="560" height="12" rx="6" fill="#26332A"/>
+        </g>
+        <!-- Flag -->
+        <path d="M1262 750V538" stroke="#D8D2C2" stroke-width="3"/>
+        <rect x="1264" y="540" width="54" height="12" fill="#E88A2E"/>
+        <rect x="1264" y="552" width="54" height="12" fill="#F3EEE2"/>
+        <rect x="1264" y="564" width="54" height="12" fill="#1F7A3A"/>
+        <circle cx="1291" cy="558" r="4" fill="none" stroke="#1D3A8A" stroke-width="1.2"/>
+        <!-- Ashoka trees along the drive -->
+        <use href="#ashoka" transform="translate(930 708) scale(.3)"/>
+        <use href="#ashoka" transform="translate(1042 708) scale(.3)"/>
+        <use href="#ashoka" transform="translate(872 732) scale(.46)"/>
+        <use href="#ashoka" transform="translate(1100 732) scale(.46)"/>
+        <use href="#ashoka" transform="translate(784 776) scale(.7)"/>
+        <use href="#ashoka" transform="translate(1190 776) scale(.7)"/>
+        <!-- Students walking in -->
+        <use href="#kidA" transform="translate(978 742) scale(.55)"/>
+        <use href="#kidB" transform="translate(992 744) scale(.55)"/>
+        <use href="#kidB" transform="translate(1010 800) scale(.95)"/>
+        <use href="#kidA" transform="translate(1034 804) scale(.95)"/>
+        <use href="#kidA" transform="translate(1110 842) scale(1.15)"/>
+        <use href="#kidB" transform="translate(944 848) scale(1.15)"/>
+      </g>
+
+      <!-- Layer: foreground canopy -->
+      <g data-depth=".08" fill="#0A1627">
+        <use href="#ashoka" transform="translate(640 850) scale(1.05)"/>
+        <use href="#ashoka" transform="translate(1336 850) scale(1.05)"/>
+        <circle cx="40" cy="630" r="150"/><circle cx="180" cy="700" r="115"/><circle cx="-20" cy="790" r="160"/>
+        <rect x="120" y="700" width="18" height="260"/>
+        <circle cx="1580" cy="640" r="150"/><circle cx="1470" cy="730" r="100"/>
+        <rect x="1520" y="720" width="18" height="240"/>
+        <rect x="0" y="880" width="1600" height="240"/>
+      </g>
+    </svg>
+
+    <!-- Replace with a real campus photograph (golden hour, ~2400px wide). If the file is missing, the illustration above is shown. -->
+    <img class="hero-photo" src="images/hero-campus.jpg"
+         alt="Apna School's heritage-style main building at golden hour, with students in uniform walking across the landscaped grounds."
+         onload="document.getElementById('heroScene').setAttribute('aria-hidden','true')" onerror="this.remove()">
+    <div class="hero-bloom" aria-hidden="true"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-grain" aria-hidden="true"></div>
+  </div>
+
+  <div class="wrap w-full pt-32 pb-8 md:pt-40">
+    <div class="hero-in max-w-[40rem]">
+      <p class="motto deva" lang="sa">विद्या ददाति विनयम् <span class="font-sans text-[.8rem] tracking-wide text-ivory/70" lang="en">&nbsp;·&nbsp; Knowledge gives humility</span></p>
+      <h1 id="hero-title" class="display mt-5">Where Curiosity Becomes <em>Character.</em></h1>
+      <p class="hero-copy mt-6">From Nursery to Class XII, we pair strong academics with Indian values, sport, the arts and service, so that every child grows into a confident, kind and capable young person.</p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a href="#about" class="btn btn-gold">Explore Our School
+          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#enquiry" class="btn btn-ghost">Book a Campus Visit</a>
+      </div>
+      <p class="mt-5 text-sm text-ivory/70">Admissions open for academic year <span class="ph" title="Editable: current admission cycle">2027–28</span></p>
+    </div>
+
+    <ul class="trust mt-14 grid grid-cols-1 sm:grid-cols-3" aria-label="At a glance">
+      <li class="trust-item flex items-center gap-4 py-5 sm:pr-6">
+        <span class="trust-num"><span class="ph" title="Editable: choose your board">CBSE</span></span>
+        <span class="text-sm leading-snug text-ivory/80">Affiliated school<br><span class="text-ivory/60">Affiliation No. <span class="ph" title="Editable: official affiliation number">[to be added]</span></span></span>
+      </li>
+      <li class="trust-item flex items-center gap-4 py-5 sm:px-6">
+        <span class="trust-num"><span class="ph" title="Editable: years since founding">25+</span></span>
+        <span class="text-sm leading-snug text-ivory/80">Years of<br>excellence</span>
+      </li>
+      <li class="trust-item flex items-center gap-4 py-5 sm:pl-6">
+        <span class="trust-num">100%</span>
+        <span class="text-sm leading-snug text-ivory/80">Student-focused,<br>every day</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= PRINCIPAL ======================= -->
+<section id="about" class="section" aria-labelledby="principal-title">
+  <div class="wrap grid items-center gap-14 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20">
+    <div class="reveal relative mx-auto w-full max-w-[400px]">
+      <div class="arch-backdrop" aria-hidden="true"></div>
+      <div class="arch-frame">
+        <!-- Portrait placeholder: add images/principal.jpg (portrait, 4:5) -->
+        <img src="images/principal.jpg" alt="Portrait of the Principal of Apna School" onerror="this.remove()">
+        <div class="absolute inset-0 grid place-items-center text-center" aria-hidden="true">
+          <div>
+            <svg width="96" height="110" viewBox="0 0 96 110" class="mx-auto" style="color:rgba(233,188,94,.55)">
+              <circle cx="48" cy="36" r="22" fill="none" stroke="currentColor" stroke-width="1.2"/>
+              <path d="M8 110c2-26 19-42 40-42s38 16 40 42" fill="none" stroke="currentColor" stroke-width="1.2"/>
+            </svg>
+            <p class="mt-4 text-[.7rem] font-bold uppercase tracking-[.18em] text-ivory/60">Principal's portrait</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal" data-delay="1">
+      <p class="eyebrow">From the Principal's Desk</p>
+      <h2 id="principal-title" class="pull mt-5">Every child arrives with a question. Our work is to help them carry it further.</h2>
+      <div class="divider my-8 max-w-[14rem]" aria-hidden="true"><i></i></div>
+      <div class="space-y-4 text-[1.02rem] text-muted" style="max-width:60ch">
+        <p>Dear parents and students, welcome. At Apna School we believe good schooling is measured as much by character as by marks. Our teachers know each child by name, notice what lights them up, and hold them to high standards with warmth.</p>
+        <p>Our classrooms are rigorous and our corridors are kind. We teach children to think clearly, speak confidently in more than one language, respect every culture that makes up India, and serve the community around them. We would be glad to welcome you on campus and show you what that looks like on an ordinary school day.</p>
+      </div>
+      <div class="mt-9 flex items-end gap-5">
+        <div>
+          <p class="signature"><span class="ph" title="Editable: Principal's name">[Principal's Name]</span></p>
+          <svg width="150" height="12" viewBox="0 0 150 12" aria-hidden="true" class="mt-1"><path d="M2 8c30-6 60-6 90-2s40 2 56-4" fill="none" stroke="#D89B25" stroke-width="1.4" stroke-linecap="round"/></svg>
+          <p class="mt-2 text-sm font-semibold">Principal, Apna School</p>
+          <p class="text-sm text-muted"><span class="ph" title="Editable: qualifications">[Qualifications]</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= WHY ======================= -->
+<section id="why" class="section bg-ivory-2/60 border-y border-line" aria-labelledby="why-title">
+  <div class="wrap">
+    <div class="reveal max-w-3xl">
+      <p class="eyebrow">Why Apna School</p>
+      <h2 id="why-title" class="h2 mt-4">Rigorous in the classroom, rooted in our values, open to the world.</h2>
+    </div>
+
+    <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <article class="card reveal p-7">
+        <span class="card-motif" aria-hidden="true"></span>
+        <span class="medallion" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 6.5C10 5 7 4.5 3.5 5v13c3.5-.5 6.5 0 8.5 1.5 2-1.5 5-2 8.5-1.5V5C17 4.5 14 5 12 6.5zM12 6.5v13"/></svg>
+        </span>
+        <h3 class="h3 mt-6">Academic Excellence</h3>
+        <p class="mt-3 text-[.95rem] text-muted">Concept-first teaching, regular diagnostic checks and timely remedial support, so that no child reaches the board years with gaps.</p>
+      </article>
+      <article class="card reveal p-7" data-delay="1">
+        <span class="card-motif" aria-hidden="true"></span>
+        <span class="medallion" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M12 3c1.8 2 2.2 3.6 1.4 5-.5.9-1.4 1.5-1.4 1.5s-.9-.6-1.4-1.5C9.8 6.6 10.2 5 12 3z"/><path d="M3.5 12.5h17c0 3.6-3.8 6.5-8.5 6.5s-8.5-2.9-8.5-6.5z"/><path d="M9 21.5h6"/></svg>
+        </span>
+        <h3 class="h3 mt-6">Values &amp; Character</h3>
+        <p class="mt-3 text-[.95rem] text-muted">Morning assembly, a house system, community service and everyday respect for every language, faith and family in our school.</p>
+      </article>
+      <article class="card reveal p-7" data-delay="2">
+        <span class="card-motif" aria-hidden="true"></span>
+        <span class="medallion" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><circle cx="12" cy="15" r="5.5"/><path d="M8.5 3l2.6 6.7M15.5 3l-2.6 6.7M12 12.6l.8 1.6 1.7.2-1.3 1.2.3 1.7-1.5-.8-1.5.8.3-1.7-1.3-1.2 1.7-.2z"/></svg>
+        </span>
+        <h3 class="h3 mt-6">Sports &amp; Arts</h3>
+        <p class="mt-3 text-[.95rem] text-muted">Cricket, football, athletics, yoga and chess sit in the timetable alongside Indian classical and western music, dance, theatre and art.</p>
+      </article>
+      <article class="card reveal p-7" data-delay="3">
+        <span class="card-motif" aria-hidden="true"></span>
+        <span class="medallion" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg>
+        </span>
+        <h3 class="h3 mt-6">Future-Ready Learning</h3>
+        <p class="mt-3 text-[.95rem] text-muted">Coding, robotics and financial literacy, plus careful guidance on choosing a stream and preparing for entrance exams and careers from Class IX.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= ACADEMICS ======================= -->
+<section id="academics" class="section" aria-labelledby="academics-title">
+  <div class="wrap">
+    <div class="grid gap-8 md:grid-cols-2 md:items-end">
+      <div class="reveal">
+        <p class="eyebrow">Academics</p>
+        <h2 id="academics-title" class="h2 mt-4">One continuous journey in four stages.</h2>
+      </div>
+      <p class="lede reveal" data-delay="1">Our curriculum follows the 5+3+3+4 structure of the National Education Policy 2020 and <span class="ph" title="Editable: board">CBSE</span> guidelines, so each stage builds on the last.</p>
+    </div>
+
+    <ol class="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+      <li class="stage reveal">
+        <span class="stage-dot" aria-hidden="true"></span>
+        <span class="stage-no" aria-hidden="true">01</span>
+        <h3 class="h3 mt-3">Foundational</h3>
+        <p class="stage-meta mt-2">Nursery, LKG, UKG, Classes I–II · Ages 3–8</p>
+        <p class="mt-4 text-[.95rem] text-muted">Play-based, activity-led learning that builds early literacy, numeracy and language, with the mother tongue and English side by side.</p>
+      </li>
+      <li class="stage reveal" data-delay="1">
+        <span class="stage-dot" aria-hidden="true"></span>
+        <span class="stage-no" aria-hidden="true">02</span>
+        <h3 class="h3 mt-3">Preparatory</h3>
+        <p class="stage-meta mt-2">Classes III–V · Ages 8–11</p>
+        <p class="mt-4 text-[.95rem] text-muted">Reading for pleasure, hands-on mathematics, EVS projects and a first taste of a third language, with teachers who know every child well.</p>
+      </li>
+      <li class="stage reveal" data-delay="2">
+        <span class="stage-dot" aria-hidden="true"></span>
+        <span class="stage-no" aria-hidden="true">03</span>
+        <h3 class="h3 mt-3">Middle</h3>
+        <p class="stage-meta mt-2">Classes VI–VIII · Ages 11–14</p>
+        <p class="mt-4 text-[.95rem] text-muted">Subject specialists, science and maths labs, coding, and experiential projects that connect classroom ideas to everyday life.</p>
+      </li>
+      <li class="stage reveal" data-delay="3">
+        <span class="stage-dot" aria-hidden="true"></span>
+        <span class="stage-no" aria-hidden="true">04</span>
+        <h3 class="h3 mt-3">Senior Secondary</h3>
+        <p class="stage-meta mt-2">Classes IX–XII · Ages 14–18</p>
+        <p class="mt-4 text-[.95rem] text-muted">Board preparation with depth. In Class XI, students choose Science (PCM / PCB), Commerce or Humanities, supported by career counselling.</p>
+      </li>
+    </ol>
+
+    <div class="reveal mt-20 rounded-2xl border border-line bg-white p-8 shadow-[var(--shadow-soft)] md:p-10">
+      <div class="flex flex-wrap items-baseline justify-between gap-4">
+        <h3 class="h3">Across every stage</h3>
+        <p class="text-sm text-muted">Woven through the timetable from Nursery to Class XII</p>
+      </div>
+      <div class="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="thread">
+          <p class="font-bold">STEM</p>
+          <p class="mt-2 text-[.93rem] text-muted">Maths labs, science practicals, coding and robotics clubs, and an annual science exhibition.</p>
+        </div>
+        <div class="thread">
+          <p class="font-bold">Languages</p>
+          <p class="mt-2 text-[.93rem] text-muted">English and Hindi, with <span class="ph" title="Editable: third language offered">Sanskrit / a regional language</span> as a third language from Class VI.</p>
+        </div>
+        <div class="thread">
+          <p class="font-bold">Arts</p>
+          <p class="mt-2 text-[.93rem] text-muted">Visual art, Indian classical and western music, dance and theatre every week, not only for annual day.</p>
+        </div>
+        <div class="thread">
+          <p class="font-bold">Experiential learning</p>
+          <p class="mt-2 text-[.93rem] text-muted">Field visits, art-integrated projects, a school garden and community service that turn lessons into lived experience.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= CAMPUS LIFE ======================= -->
+<section id="campus" class="section bg-navy text-ivory on-dark" aria-labelledby="campus-title">
+  <div class="wrap">
+    <div class="grid gap-6 md:grid-cols-2 md:items-end">
+      <div class="reveal">
+        <p class="eyebrow">Campus Life</p>
+        <h2 id="campus-title" class="h2 mt-4">School days full of doing.</h2>
+      </div>
+      <p class="reveal text-ivory/75 md:justify-self-end" style="max-width:44ch" data-delay="1">Spaces built for learning by hand, by ear and by heart, from the first bell to the last house practice.</p>
+    </div>
+
+    <!-- Add photos to /images with the filenames below; illustrated fallbacks show until then. -->
+    <div class="mt-14 grid auto-rows-[240px] grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <figure class="tile reveal sm:col-span-2 lg:row-span-2">
+        <div class="tile-art t-class" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="38" height="24" rx="2"/><path d="M10 25l7-7 6 3 7-8 7 3M24 31v8M16 41h16"/></svg>
+        </div>
+        <img src="images/campus-smart-classroom.jpg" alt="Students in a smart classroom working with their teacher at an interactive board" onerror="this.remove()">
+        <span class="tile-tag">Every classroom</span>
+        <figcaption class="tile-label"><h3>Smart classrooms</h3><p class="mt-1">Interactive boards, flexible seating and space for group work in every section.</p></figcaption>
+      </figure>
+
+      <figure class="tile reveal" data-delay="1">
+        <div class="tile-art t-lib" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"><rect x="8" y="10" width="7" height="30"/><rect x="16" y="14" width="6" height="26"/><path d="M25 40l6-28 6 1.3-6 28zM5 40h38"/></svg>
+        </div>
+        <img src="images/campus-library.jpg" alt="Children reading in the school library among tall wooden shelves" onerror="this.remove()">
+        <figcaption class="tile-label"><h3>Library</h3><p class="mt-1">English, Hindi and regional-language books, with a weekly reading hour.</p></figcaption>
+      </figure>
+
+      <figure class="tile reveal" data-delay="2">
+        <div class="tile-art t-lab" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M19 6h10M21 6v12L10 38a3 3 0 0 0 2.6 4.5h22.8A3 3 0 0 0 38 38L27 18V6M14 31h20"/><circle cx="22" cy="36" r="1.5"/><circle cx="28" cy="34" r="1"/></svg>
+        </div>
+        <img src="images/campus-science-lab.jpg" alt="Senior students conducting an experiment in the chemistry laboratory" onerror="this.remove()">
+        <figcaption class="tile-label"><h3>Science labs</h3><p class="mt-1">Physics, chemistry and biology labs for hands-on practicals.</p></figcaption>
+      </figure>
+
+      <figure class="tile reveal sm:col-span-2">
+        <div class="tile-art t-sport" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M34 6l6 6L22 30l-6-6zM16 24l-9 9M9 35l2 2"/><circle cx="34" cy="36" r="4"/></svg>
+        </div>
+        <img src="images/campus-sports.jpg" alt="Students playing cricket on the school ground during a house match" onerror="this.remove()">
+        <span class="tile-tag">Four houses</span>
+        <figcaption class="tile-label"><h3>Sports &amp; fitness</h3><p class="mt-1">Cricket, football, athletics, yoga and indoor games, with inter-house matches all year.</p></figcaption>
+      </figure>
+
+      <figure class="tile reveal sm:col-span-1 lg:col-span-2">
+        <div class="tile-art t-music" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M18 34V10l20-4v24"/><circle cx="14" cy="34" r="4"/><circle cx="34" cy="30" r="4"/></svg>
+        </div>
+        <img src="images/campus-music.jpg" alt="Students practising tabla and harmonium in the music room" onerror="this.remove()">
+        <figcaption class="tile-label"><h3>Music &amp; dance</h3><p class="mt-1">Hindustani vocal, tabla, keyboard and guitar, plus classical and folk dance.</p></figcaption>
+      </figure>
+
+      <figure class="tile reveal sm:col-span-1 lg:col-span-2" data-delay="1">
+        <div class="tile-art t-arts" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"><path d="M24 6C13 6 6 13.5 6 22c0 8 6 14 13 14 3 0 3.5-2.5 2.5-4.5s0-4 2.5-4h5c6 0 13-3 13-10C42 11 34 6 24 6z"/><circle cx="15" cy="20" r="2.5"/><circle cx="22" cy="13" r="2.5"/><circle cx="31" cy="14" r="2.5"/><circle cx="36" cy="21" r="2.5"/></svg>
+        </div>
+        <img src="images/campus-arts.jpg" alt="Young students painting a Madhubani-style mural in the art studio" onerror="this.remove()">
+        <figcaption class="tile-label"><h3>Art studio</h3><p class="mt-1">Painting, clay and Indian folk-art forms, shown at the annual exhibition.</p></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= ACHIEVEMENTS ======================= -->
+<section class="stats on-dark border-t border-white/10" aria-labelledby="stats-title">
+  <div class="wrap relative py-20">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="eyebrow">Apna School in numbers</p>
+        <h2 id="stats-title" class="h3 mt-3 text-[1.9rem] text-ivory">A community that keeps growing.</h2>
+      </div>
+      <p class="text-xs text-ivory/55">All figures are editable placeholders. Replace them with verified data.</p>
+    </div>
+    <dl class="mt-12 grid grid-cols-2 md:grid-cols-4">
+      <div class="stat reveal px-4 py-8 md:px-8 md:py-4">
+        <dt class="text-sm text-ivory/75 order-2">Learners</dt>
+        <dd class="stat-num" data-count="1500" data-suffix="+"><span class="ph" title="Editable placeholder">1,500+</span></dd>
+      </div>
+      <div class="stat reveal px-4 py-8 md:px-8 md:py-4" data-delay="1">
+        <dt class="text-sm text-ivory/75">Educators</dt>
+        <dd class="stat-num" data-count="45" data-suffix="+"><span class="ph" title="Editable placeholder">45+</span></dd>
+      </div>
+      <div class="stat reveal px-4 py-8 md:px-8 md:py-4" data-delay="2">
+        <dt class="text-sm text-ivory/75">Co-curricular clubs</dt>
+        <dd class="stat-num" data-count="30" data-suffix="+"><span class="ph" title="Editable placeholder">30+</span></dd>
+      </div>
+      <div class="stat reveal px-4 py-8 md:px-8 md:py-4" data-delay="3">
+        <dt class="text-sm text-ivory/75">Board results with distinction</dt>
+        <dd class="stat-num" data-count="95" data-suffix="%+"><span class="ph" title="Editable placeholder">95%+</span></dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<!-- ======================= ADMISSIONS ======================= -->
+<section id="admissions" class="section" aria-labelledby="admissions-title">
+  <div class="wrap grid gap-14 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-20">
+    <div>
+      <div class="reveal">
+        <p class="eyebrow">Admissions</p>
+        <h2 id="admissions-title" class="h2 mt-4">Joining Apna School takes three steps.</h2>
+        <p class="lede mt-5">Our admissions team will guide you through each step, from your first question to your child's first day.</p>
+      </div>
+
+      <ol class="steps mt-10 space-y-8">
+        <li class="reveal flex gap-5">
+          <span class="step-no" aria-hidden="true">1</span>
+          <div><h3 class="text-lg font-bold">Enquire</h3><p class="mt-1 text-[.95rem] text-muted">Send the enquiry form or call the admissions office. We'll share the prospectus, fee structure and age criteria.</p></div>
+        </li>
+        <li class="reveal flex gap-5" data-delay="1">
+          <span class="step-no" aria-hidden="true">2</span>
+          <div><h3 class="text-lg font-bold">Visit</h3><p class="mt-1 text-[.95rem] text-muted">Tour the campus on a working school day, see classrooms in session and meet our academic coordinators.</p></div>
+        </li>
+        <li class="reveal flex gap-5" data-delay="2">
+          <span class="step-no" aria-hidden="true">3</span>
+          <div><h3 class="text-lg font-bold">Apply</h3><p class="mt-1 text-[.95rem] text-muted">Submit the registration form with documents. An interaction or assessment follows, depending on the class.</p></div>
+        </li>
+      </ol>
+
+      <div class="callout reveal mt-12 p-7">
+        <p class="text-[.7rem] font-bold uppercase tracking-[.18em] text-gold-soft">Academic year <span class="ph" title="Editable">2027–28</span></p>
+        <p class="mt-3 font-serif text-[1.7rem] font-semibold leading-tight">Registrations are open for Nursery to Class IX and Class XI.</p>
+        <dl class="mt-5 grid gap-3 text-sm text-ivory/80 sm:grid-cols-2">
+          <div><dt class="text-ivory/55">Registration window</dt><dd class="font-semibold text-ivory"><span class="ph" title="Editable: dates">[Start date] – [End date]</span></dd></div>
+          <div><dt class="text-ivory/55">Age criteria</dt><dd class="font-semibold text-ivory">As per <span class="ph" title="Editable: board / state norms">[board / state]</span> norms</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <div id="enquiry" class="form-card reveal p-6 sm:p-9" data-delay="1">
+      <h3 class="h3">Admission enquiry</h3>
+      <p class="mt-2 text-sm text-muted">We'll get back to you within two working days. Fields marked <span class="req text-[#9A3B1B]">*</span> are required.</p>
+
+      <form id="enquiryForm" class="mt-7 grid gap-5 sm:grid-cols-2" novalidate>
+        <div class="field sm:col-span-2">
+          <label class="lbl" for="f-name">Parent / guardian name <span class="req" aria-hidden="true">*</span></label>
+          <input class="input" id="f-name" name="name" type="text" autocomplete="name" required placeholder="e.g. Priya Sharma" aria-describedby="e-name">
+          <p class="err" id="e-name" hidden>Enter your full name.</p>
+        </div>
+        <div class="field">
+          <label class="lbl" for="f-email">Parent email <span class="req" aria-hidden="true">*</span></label>
+          <input class="input" id="f-email" name="email" type="email" autocomplete="email" required placeholder="name@example.com" aria-describedby="e-email">
+          <p class="err" id="e-email" hidden>Enter a valid email address, e.g. name@example.com.</p>
+        </div>
+        <div class="field">
+          <label class="lbl" for="f-mobile">Mobile number <span class="req" aria-hidden="true">*</span></label>
+          <div class="prefix-wrap">
+            <span class="prefix" aria-hidden="true">+91</span>
+            <input class="input" id="f-mobile" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="10" required placeholder="98XXXXXXXX" aria-describedby="e-mobile">
+          </div>
+          <p class="err" id="e-mobile" hidden>Enter a 10-digit Indian mobile number starting with 6, 7, 8 or 9.</p>
+        </div>
+        <div class="field sm:col-span-2">
+          <label class="lbl" for="f-class">Class applying for <span class="req" aria-hidden="true">*</span></label>
+          <select class="input" id="f-class" name="class" required aria-describedby="e-class">
+            <option value="">Select a class</option>
+            <option>Nursery</option><option>LKG</option><option>UKG</option>
+            <option>Class I</option><option>Class II</option><option>Class III</option><option>Class IV</option>
+            <option>Class V</option><option>Class VI</option><option>Class VII</option><option>Class VIII</option>
+            <option>Class IX</option><option>Class XI – Science</option><option>Class XI – Commerce</option><option>Class XI – Humanities</option>
+          </select>
+          <p class="err" id="e-class" hidden>Choose the class you are applying for.</p>
+        </div>
+        <div class="field sm:col-span-2">
+          <label class="lbl" for="f-msg">Message <span class="font-normal text-muted">(optional)</span></label>
+          <textarea class="input min-h-[120px] resize-y" id="f-msg" name="message" rows="4" placeholder="Preferred visit date, questions about transport, fees or the curriculum…"></textarea>
+        </div>
+        <div class="field sm:col-span-2">
+          <label class="flex items-start gap-3 text-sm text-muted" for="f-consent">
+            <input class="check" id="f-consent" name="consent" type="checkbox" required aria-describedby="e-consent">
+            <span>I agree to be contacted by Apna School by phone, SMS, WhatsApp or email about this enquiry. My details will be used only for admissions.</span>
+          </label>
+          <p class="err" id="e-consent" hidden>Tick the box so our admissions office can contact you.</p>
+        </div>
+        <div class="sm:col-span-2">
+          <button type="submit" class="btn btn-navy w-full sm:w-auto">Send enquiry
+            <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </form>
+
+      <div id="formDone" class="mt-7 rounded-xl border border-sage/40 bg-sage/10 p-6" role="status" tabindex="-1" hidden>
+        <p class="font-serif text-2xl font-semibold">Thank you, <span id="doneName"></span>.</p>
+        <p class="mt-2 text-sm text-muted">Your enquiry for <strong id="doneClass"></strong> is ready. <em>Preview only:</em> connect this form to the school's admissions inbox or CRM to receive submissions.</p>
+        <button type="button" id="formReset" class="mt-4 text-sm font-bold text-gold-ink underline underline-offset-4">Send another enquiry</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= TESTIMONIALS ======================= -->
+<section class="section bg-ivory-2/60 border-t border-line" aria-labelledby="voices-title">
+  <div class="wrap">
+    <div class="reveal flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="eyebrow">In their words</p>
+        <h2 id="voices-title" class="h2 mt-4">What our families say.</h2>
+      </div>
+      <p class="text-xs text-muted">Sample testimonials. Replace them with real quotes shared with consent.</p>
+    </div>
+    <div class="mt-12 grid gap-6 md:grid-cols-2">
+      <figure class="quote-card reveal p-8 md:p-10">
+        <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+        <blockquote><p>Our daughter used to be shy about speaking in class. Two years on, she anchored the annual day programme in both Hindi and English. The teachers noticed her before we did.</p></blockquote>
+        <figcaption class="mt-8 flex items-center gap-4">
+          <span class="grid h-11 w-11 place-items-center rounded-full bg-navy font-serif text-lg font-semibold text-ivory" aria-hidden="true">P</span>
+          <span><span class="block font-bold"><span class="ph" title="Editable">[Parent name]</span></span><span class="text-sm text-muted">Parent of a Class V student</span></span>
+        </figcaption>
+      </figure>
+      <figure class="quote-card reveal p-8 md:p-10" data-delay="1">
+        <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+        <blockquote><p>The science teachers let us fail at experiments until we understood why. That habit helped me more in Class XII than any guidebook ever did.</p></blockquote>
+        <figcaption class="mt-8 flex items-center gap-4">
+          <span class="grid h-11 w-11 place-items-center rounded-full bg-sage font-serif text-lg font-semibold text-white" aria-hidden="true">S</span>
+          <span><span class="block font-bold"><span class="ph" title="Editable">[Student name]</span></span><span class="text-sm text-muted">Class XII student, Science stream</span></span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ======================= FOOTER ======================= -->
+<footer id="contact" class="footer" aria-labelledby="footer-title">
+  <h2 id="footer-title" class="sr-only">Contact and quick links</h2>
+  <div class="wrap grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+    <div>
+      <div class="flex items-center gap-3">
+        <svg viewBox="0 0 40 48" width="34" height="41" aria-hidden="true">
+          <path d="M3 46V19a17 17 0 0 1 34 0v27z" fill="#0B1F3A" stroke="#D89B25" stroke-width="1.5"/>
+          <text x="20" y="37" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-size="15" font-weight="700" fill="#F8F4EC">AS</text>
+        </svg>
+        <span class="brand-name text-ivory">Apna School</span>
+      </div>
+      <p class="deva mt-5 text-gold-soft" lang="sa">विद्या ददाति विनयम्</p>
+      <address class="mt-4 not-italic leading-relaxed text-sm">
+        <span class="ph" title="Editable: street address">[Street / Sector / Locality]</span><br>
+        <span class="ph" title="Editable: city, state">[City], [State]</span> – <span class="ph" title="Editable: PIN code">[PIN]</span><br>
+        India
+      </address>
+    </div>
+
+    <div>
+      <h3>Visit &amp; contact</h3>
+      <dl class="mt-5 space-y-4 text-sm">
+        <div><dt class="text-ivory/55">Office hours</dt><dd class="text-ivory"><span class="ph" title="Editable">Monday–Saturday, 8:00 am – 2:00 pm</span></dd></div>
+        <div><dt class="text-ivory/55">Phone</dt><dd class="text-ivory select-all">+91 <span class="ph" title="Editable">[XXXXX XXXXX]</span></dd></div>
+        <div><dt class="text-ivory/55">Email</dt><dd class="text-ivory select-all break-all"><span class="ph" title="Editable">admissions@[yourschool].edu.in</span></dd></div>
+      </dl>
+    </div>
+
+    <nav aria-label="Footer">
+      <h3>Quick links</h3>
+      <ul class="mt-5 space-y-3 text-sm">
+        <li><a class="f-link" href="#about">About the school</a></li>
+        <li><a class="f-link" href="#academics">Academics</a></li>
+        <li><a class="f-link" href="#campus">Campus life</a></li>
+        <li><a class="f-link" href="#admissions">Admissions</a></li>
+        <li><a class="f-link" href="#enquiry">Book a campus visit</a></li>
+        <li><a class="f-link" href="#">Mandatory public disclosure</a></li>
+      </ul>
+    </nav>
+
+    <div>
+      <h3>Follow us</h3>
+      <!-- Replace # with the school's profile URLs -->
+      <ul class="mt-5 flex flex-wrap gap-3">
+        <li><a class="social" href="#" aria-label="Apna School on Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a></li>
+        <li><a class="social" href="#" aria-label="Apna School on YouTube">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/></svg></a></li>
+        <li><a class="social" href="#" aria-label="Apna School on Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H7.9v3h2.6V21z"/></svg></a></li>
+        <li><a class="social" href="#" aria-label="Apna School on LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.9 8.8H3.8V20h3.1zM5.3 4a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 0 0 0-3.6zM20.2 13.6c0-3-1.6-5-4.3-5-1.4 0-2.4.8-2.8 1.5V8.8H10V20h3.1v-5.8c0-1.4.5-2.6 2-2.6s1.9 1.3 1.9 2.7V20h3.2z"/></svg></a></li>
+      </ul>
+      <a href="#enquiry" class="btn btn-gold btn-sm mt-8">Apply Now</a>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="wrap flex flex-col gap-3 py-6 text-xs text-ivory/55 md:flex-row md:items-center md:justify-between">
+      <p>© <span id="year">2026</span> Apna School. All rights reserved. · Affiliation No. <span class="ph" title="Editable">[—]</span> · School Code <span class="ph" title="Editable">[—]</span></p>
+      <ul class="flex flex-wrap gap-5">
+        <li><a class="f-link" href="#">Privacy policy</a></li>
+        <li><a class="f-link" href="#">Terms of use</a></li>
+        <li><a class="f-link" href="#">Grievance redressal</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce) document.documentElement.classList.add('motion-ok');
+
+  /* Header: solid background after leaving the top of the hero */
+  var header = document.getElementById('siteHeader');
+  function onScrollHeader() { header.classList.toggle('is-scrolled', window.scrollY > 40); }
+  onScrollHeader();
+  window.addEventListener('scroll', onScrollHeader, { passive: true });
+
+  /* Mobile menu */
+  var menuBtn = document.getElementById('menuBtn');
+  var menu = document.getElementById('mobileMenu');
+  var icon = document.getElementById('menuIcon');
+  function setMenu(open) {
+    menu.hidden = !open;
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    header.classList.toggle('menu-open', open);
+    icon.setAttribute('d', open ? 'M4 4l12 12M16 4L4 16' : 'M2 5h16M2 10h16M2 15h16');
+  }
+  menuBtn.addEventListener('click', function () { setMenu(menu.hidden); });
+  menu.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !menu.hidden) { setMenu(false); menuBtn.focus(); } });
+  window.addEventListener('resize', function () { if (window.innerWidth >= 1024 && !menu.hidden) setMenu(false); });
+
+  /* Active nav link */
+  var links = document.querySelectorAll('.nav-link');
+  if ('IntersectionObserver' in window) {
+    var navIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (l) { l.setAttribute('aria-current', l.getAttribute('href') === '#' + en.target.id ? 'true' : 'false'); });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    ['about', 'academics', 'campus', 'admissions', 'contact'].forEach(function (id) { var s = document.getElementById(id); if (s) navIO.observe(s); });
+  }
+
+  /* Reveal on scroll */
+  var reveals = document.querySelectorAll('.reveal');
+  if (reduce || !('IntersectionObserver' in window)) {
+    reveals.forEach(function (el) { el.classList.add('is-in'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+    reveals.forEach(function (el) { io.observe(el); });
+    setTimeout(function () { reveals.forEach(function (el) { el.classList.add('is-in'); }); }, 4000);
+  }
+
+  /* Hero parallax depth */
+  var layers = document.querySelectorAll('#heroScene [data-depth]');
+  var hero = document.getElementById('top');
+  if (!reduce && layers.length) {
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        var y = Math.min(window.scrollY, hero.offsetHeight);
+        layers.forEach(function (g) { g.style.transform = 'translateY(' + (y * parseFloat(g.dataset.depth)) + 'px)'; });
+        ticking = false;
+      });
+    }, { passive: true });
+  }
+
+  /* Stat count-up */
+  var stats = document.querySelectorAll('[data-count]');
+  if (!reduce && 'IntersectionObserver' in window) {
+    var sio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        sio.unobserve(en.target);
+        var span = en.target.querySelector('span') || en.target;
+        var end = +en.target.dataset.count, suffix = en.target.dataset.suffix || '', t0 = null;
+        function step(t) {
+          if (!t0) t0 = t;
+          var p = Math.min((t - t0) / 1400, 1), e = 1 - Math.pow(1 - p, 3);
+          span.textContent = Math.round(end * e).toLocaleString('en-IN') + suffix;
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    }, { threshold: .5 });
+    stats.forEach(function (s) { sio.observe(s); });
+  }
+
+  /* Enquiry form */
+  var form = document.getElementById('enquiryForm');
+  var done = document.getElementById('formDone');
+  var rules = {
+    'f-name':    function (v) { return v.trim().length >= 2; },
+    'f-email':   function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); },
+    'f-mobile':  function (v) { return /^[6-9]\d{9}$/.test(v.replace(/\s/g, '')); },
+    'f-class':   function (v) { return v !== ''; },
+    'f-consent': function (_, el) { return el.checked; }
+  };
+  function check(id) {
+    var el = document.getElementById(id), ok = rules[id](el.value, el);
+    var err = document.getElementById('e-' + id.slice(2));
+    el.setAttribute('aria-invalid', ok ? 'false' : 'true');
+    err.hidden = ok;
+    return ok;
+  }
+  document.getElementById('f-mobile').addEventListener('input', function (e) { e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10); });
+  Object.keys(rules).forEach(function (id) {
+    var el = document.getElementById(id);
+    el.addEventListener(el.type === 'checkbox' || el.tagName === 'SELECT' ? 'change' : 'blur', function () { if (el.getAttribute('aria-invalid')) check(id); });
+  });
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var firstBad = null;
+    Object.keys(rules).forEach(function (id) { if (!check(id) && !firstBad) firstBad = id; });
+    if (firstBad) { document.getElementById(firstBad).focus(); return; }
+    // TODO: send the data to your admissions endpoint, e.g. fetch('/api/enquiry', { method: 'POST', body: new FormData(form) })
+    document.getElementById('doneName').textContent = document.getElementById('f-name').value.trim().split(' ')[0];
+    document.getElementById('doneClass').textContent = document.getElementById('f-class').value;
+    form.hidden = true; done.hidden = false; done.focus();
+  });
+  document.getElementById('formReset').addEventListener('click', function () {
+    form.reset();
+    form.querySelectorAll('[aria-invalid]').forEach(function (el) { el.removeAttribute('aria-invalid'); });
+    done.hidden = true; form.hidden = false; document.getElementById('f-name').focus();
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
